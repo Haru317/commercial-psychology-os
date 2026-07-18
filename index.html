@@ -388,96 +388,41 @@ img,svg,video,canvas{max-width:100%;height:auto}
 .stage-summary{margin-bottom:10px;padding:13px;border-radius:15px;background:linear-gradient(135deg,#fff,#f8fbff);border:1px solid var(--line)}
 .stage-summary h4{margin:0 0 4px;font-size:14px;color:var(--navy)}.stage-summary p{margin:0;font-size:11px;line-height:1.55;color:#626b79}
 @media(max-width:760px){.selection-grid{grid-template-columns:repeat(2,1fr)}.daily-plan{display:block}.day-card{margin-bottom:8px}.quality-banner{padding:14px}.quality-banner h3{font-size:15px}.quality-banner p{font-size:11px}}
-/* PC responsive fix */
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+
+
+/* v7 evidence-based commercial psychology training */
+.case-panel{
+  margin-bottom:14px;padding:18px;border-radius:22px;background:linear-gradient(135deg,#ffffff,#f8fbff 48%,#fff8fb);
+  border:1px solid var(--line);box-shadow:var(--shadow)
+}
+.case-panel h3{margin:0 0 5px;color:var(--navy);font-size:18px}
+.case-panel p{margin:0;color:#606a79;font-size:12px;line-height:1.65}
+.case-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:10px;margin-top:12px}
+.case-grid input,.case-grid textarea,.case-grid select{
+  width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;background:#fff;color:var(--ink)
+}
+.case-grid textarea{min-height:72px;resize:vertical}
+.case-field label{display:block;font-size:10px;font-weight:800;color:var(--navy);margin-bottom:5px}
+.cycle-map{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.cycle-step{padding:10px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.cycle-step strong{display:block;font-size:11px;color:var(--navy)}
+.cycle-step span{font-size:9px;color:var(--muted)}
+.rubric{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.rubric-item{padding:8px;border-radius:11px;background:#f8f9fb;border:1px solid var(--line);font-size:9px;color:#596273}
+.rubric-item.done{background:#eef8f1;border-color:#cfe5d6;color:#3f684c}
+.evidence-table{width:100%;border-collapse:collapse;margin-top:10px}
+.evidence-table th,.evidence-table td{border:1px solid var(--line);padding:8px;vertical-align:top;font-size:10px}
+.evidence-table th{background:#f8f9fb;color:var(--navy);text-align:left}
+.evidence-table textarea{width:100%;min-height:56px;border:0;background:transparent;resize:vertical;font-size:10px}
+.portfolio-list{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.portfolio-item{padding:11px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.portfolio-item strong{display:block;font-size:11px;color:var(--navy)}
+.portfolio-item span{font-size:9px;color:var(--muted)}
+@media(max-width:760px){
+  .case-grid{grid-template-columns:1fr}.cycle-map{grid-template-columns:1fr}.rubric{grid-template-columns:1fr 1fr}
+  .portfolio-list{grid-template-columns:1fr}.evidence-table{display:block;overflow-x:auto}
 }
 
-.shell {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 18px;
-}
-
-.dashboard {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.55fr);
-  gap: 16px;
-  width: 100%;
-}
-
-.left,
-.right,
-.card,
-.hero-main,
-.hero-side,
-.mission-box,
-.why-card {
-  min-width: 0;
-}
-
-.metrics {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.metric {
-  min-width: 0;
-  overflow: hidden;
-}
-
-.metric strong,
-.metric .label,
-.metric .task-desc {
-  overflow-wrap: anywhere;
-}
-
-.calendar {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.day {
-  min-width: 0;
-}
-
-@media (max-width: 1180px) {
-  .dashboard {
-    grid-template-columns: minmax(0, 1fr) 360px;
-  }
-
-  .metrics {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 980px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .right {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-  }
-
-  .right > .card {
-    min-width: 0;
-  }
-}
-
-@media (max-width: 760px) {
-  .shell {
-    padding: 8px;
-  }
-
-  .right {
-    display: flex;
-  }
-}
 </style>
 </head>
 <body>
@@ -525,6 +470,23 @@ body {
 <div class="selection-rule"><strong>即日適用</strong><span>毎日ひとつ成果物を残す</span></div>
 <div class="selection-rule"><strong>日本語優先</strong><span>良質な日本語教材を補助採用</span></div>
 </div></section>
+
+<section class="case-panel">
+  <h3>Core Case Workspace｜30日間、同じ案件を育てる</h3>
+  <p>毎日のメモを独立させず、一つの実在商品・顧客・交渉案件へ累積します。観察→仮説→反証→介入→測定→理論更新を同じ案件で回します。</p>
+  <div class="case-grid">
+    <div class="case-field"><label>対象案件・商品</label><input id="caseName" placeholder="例：美容医療ツアーの初回相談"></div>
+    <div class="case-field"><label>対象顧客・意思決定者</label><input id="casePerson" placeholder="例：30〜45歳、高所得だが不安が強い女性"></div>
+    <div class="case-field"><label>現在の商業課題</label><textarea id="caseProblem" placeholder="何が売れない／決まらない／継続されないのか"></textarea></div>
+    <div class="case-field"><label>30日後の測定目標</label><textarea id="caseGoal" placeholder="例：3件の診断面談、1件の有料提案、反論分類表v1完成"></textarea></div>
+  </div>
+  <div class="cycle-map">
+    <div class="cycle-step"><strong>Day A｜Concept</strong><span>理論を取得し、観察レンズを追加</span></div>
+    <div class="cycle-step"><strong>Day B｜Diagnosis</strong><span>同じ案件の証拠と代替仮説を比較</span></div>
+    <div class="cycle-step"><strong>Day C｜Experiment</strong><span>質問・表現・条件を変えて反応を測定</span></div>
+  </div>
+</section>
+
 <main class="dashboard">
     <div class="left">
       <section class="card">
@@ -562,7 +524,20 @@ body {
         <div class="curriculum-grid" id="curriculumGrid"></div>
       </section>
 
-      <section class="card vision">
+      
+<section class="card">
+  <div class="section-head"><h3>Professional Portfolio</h3><span>30日後に残す提出物</span></div>
+  <div class="portfolio-list">
+    <div class="portfolio-item"><strong>顧客意思決定診断書</strong><span>事実・解釈・感情・動機・摩擦・権限</span></div>
+    <div class="portfolio-item"><strong>インタビュー記録 3〜5件</strong><span>発言証拠と推測を分離</span></div>
+    <div class="portfolio-item"><strong>反論分類表</strong><span>真因・検証質問・対応仮説</span></div>
+    <div class="portfolio-item"><strong>価値・価格仮説</strong><span>参照点、損失、支払意思、リスク</span></div>
+    <div class="portfolio-item"><strong>介入前後の結果</strong><span>予測、変更、反応、差分</span></div>
+    <div class="portfolio-item"><strong>診断手順書 v1</strong><span>再現可能なCommercial Psychology Audit</span></div>
+  </div>
+</section>
+
+<section class="card vision">
         <div class="section-head">
           <h3>Vision · 100 Days Later</h3>
           <span>この旅の最終到達点</span>
@@ -655,82 +630,127 @@ body {
 </div>
 
 <script>
-const START=new Date("2026-07-18T00:00:00"),TOTAL_DAYS=30,KEY="commercialPsychologyOS_v6";
-let state=JSON.parse(localStorage.getItem(KEY)||'{"days":{}}'),selectedDate=new Date(),cloudReady=false,syncTimer=null;
-const C={
-social:{name:"Social Psychology",provider:"Wesleyan University / Scott Plous",url:"https://www.coursera.org/learn/social-psychology"},
-viral:{name:"Viral Marketing and How to Craft Contagious Content",provider:"Wharton / Jonah Berger",url:"https://www.coursera.org/learn/wharton-contagious-viral-marketing"},
+const START=new Date("2026-07-18T00:00:00"),TOTAL_DAYS=30,KEY="commercialPsychologyOS_v7";
+let state=JSON.parse(localStorage.getItem(KEY)||'{"days":{},"case":{},"evidence":{}}'),selectedDate=new Date(),cloudReady=false,syncTimer=null;
+if(!state.case)state.case={};if(!state.evidence)state.evidence={};
+
+const SOURCES={
+social:{name:"Social Psychology",provider:"Wesleyan University",url:"https://www.coursera.org/learn/social-psychology"},
+viral:{name:"Viral Marketing and How to Craft Contagious Content",provider:"Wharton",url:"https://www.coursera.org/learn/wharton-contagious-viral-marketing"},
 marketing:{name:"Introduction to Marketing",provider:"Wharton",url:"https://www.coursera.org/learn/wharton-marketing"},
-negotiation:{name:"Successful Negotiation",provider:"University of Michigan / George Siedel",url:"https://www.coursera.org/learn/negotiation-skills"},
 selling:{name:"Consultative Selling Foundations for Complex Deals",provider:"Coursera",url:"https://www.coursera.org/learn/consultative-selling-foundations-for-complex-deals"},
-schooPsych:{name:"消費者心理学とカスタマージャーニーマップ",provider:"Schoo / 中川功一",url:"https://schoo.jp/class/9312"},
-schooPrice:{name:"プライシング（価格設定）の科学",provider:"Schoo / 中川功一",url:"https://schoo.jp/class/9311"},
-schooComm:{name:"コミュニケーション戦略：DX時代のマーケティング3.0/4.0",provider:"Schoo / 中川功一",url:"https://schoo.jp/class/9313"},
-globisBatna:{name:"交渉術とは？BATNAとRV",provider:"GLOBIS",url:"https://globis.jp/article/2081/"},
-globisIssues:{name:"相手の関心事を増やして交渉を広げる",provider:"GLOBIS",url:"https://globis.jp/article/2084/"},
-globisWin:{name:"Win-Win：勝ち負けではない交渉",provider:"GLOBIS",url:"https://globis.jp/courses/e345c35e/"}
+price:{name:"プライシング（価格設定）の科学",provider:"Schoo",url:"https://schoo.jp/class/9311"},
+psychjp:{name:"消費者心理学とカスタマージャーニーマップ",provider:"Schoo",url:"https://schoo.jp/class/9312"},
+batna:{name:"交渉術とは？BATNAとRV",provider:"GLOBIS",url:"https://globis.jp/article/2081/"},
+issues:{name:"相手の関心事を増やして交渉を広げる",provider:"GLOBIS",url:"https://globis.jp/article/2084/"}
 };
+
 const stages=[
-{name:"Decision Lens",jp:"現実・判断・バイアス",start:1,end:5,why:"相手の言葉を事実だと思い込まず、知覚・解釈・期待が判断を作る構造を習得する。"},
-{name:"Persuasion & Influence",jp:"態度変容・説得・社会的影響",start:6,end:10,why:"意思決定が自己像・他者・集団・規範によって変わる構造を扱う。"},
-{name:"Diagnostic Selling",jp:"質問・傾聴・反論診断",start:11,end:15,why:"心理知識を実際の会話で真因へ到達する診断能力へ変換する。"},
-{name:"Value & Pricing",jp:"価値認知・価格・ポジショニング",start:16,end:20,why:"顧客の問題を、支払う価値が理解できる提案・価格・ブランド表現へ変換する。"},
-{name:"Negotiation Architecture",jp:"BATNA・論点・合意設計",start:21,end:25,why:"条件・リスク・権限を整え、双方が進める合意を設計する。"},
-{name:"Scale & Productize",jp:"伝播・マーケティング・商品化",start:26,end:30,why:"一対一の洞察を一対多の発信、診断商品、HCEの知的資産へ変える。"}
+{name:"Observer Calibration",jp:"観察者の誤診を制御",start:1,end:4},
+{name:"Evidence Diagnosis",jp:"証拠・仮説・質問",start:5,end:9},
+{name:"Decision Friction",jp:"損失・参照点・摩擦・信頼",start:10,end:15},
+{name:"Interview & Objection Lab",jp:"顧客発言と反論診断",start:16,end:21},
+{name:"Value, Price & Experiment",jp:"価値・価格・介入測定",start:22,end:27},
+{name:"Productize",jp:"診断手順・提案・HCE統合",start:28,end:30}
 ];
+
 const D=[
-[1,1,"現実は心理的に構築される","social","Week 1","Lecture 1.4: The Psychological Construction of Reality（13分）","EN","顧客の発言は客観的現実ではなく、その人の知覚と解釈を通った結果だから。","購買・離脱事例を1件選び、事実／解釈／感情／行動に分解。","別解釈を3つ作れたら完了。","Course Logistics、Network案内、75分の入門読書は飛ばす。","schooPsych"],
-[2,1,"Confirmation Bias","social","Week 1","Lecture 1.5: Confirmation Bias（9分）","EN","営業側も顧客側も最初の仮説を支持する情報だけを集めやすいから。","顧客仮説を1つ書き、反証を3つ探す。","仮説が外れる条件を言語化。","追加読書は任意。",null],
-[3,1,"Self-Fulfilling Prophecy","social","Week 1","Lecture 1.6: Self-Fulfilling Prophecies（12分）","EN","期待が質問・態度・結果を実際に変えるから。","過去会話を期待→自分の行動→相手の反応→結果で再分析。","自分が結果を作った部分を1つ発見。","Assignment不要。",null],
-[4,1,"Thin Slices：瞬間判断","social","Week 1","Lecture 1.7: Thin Slices（13分）","EN","人は短時間で相手・ブランド・価格帯を判断するから。","プロフィールを5秒見た印象を第三者1人に確認。","意図と実際の差を1つ特定。","Snapshot Quiz任意。",null],
-[5,1,"Attribution：性格と状況を分ける","social","Week 2","Lecture 2.1: Attribution Theory（16分）","EN","性格に帰属すると修正可能な資金・権限・状況要因を見失うから。","断られた案件をPerson／Situation／Systemで再診断。","状況・制度要因を3つ追加。","Reading 2.1は後回し。","schooPsych"],
-[6,2,"Attitude–Behavior Gap","social","Week 2","Lecture 2.3: Attitudes and Behavior（15分）","EN","好意や必要性と購入行動は別だから。","好意はあるのに動かなかった例を能力・機会・優先順位・摩擦に分解。","行動条件を4分類。","前後説明不要。",null],
-[7,2,"Cognitive Dissonance","social","Week 2","Lecture 2.4: Cognitive Dissonance and Self-Perception（15分）","EN","購入後・離脱後に選択を正当化し態度まで変えるから。","選択前の理由と選択後の説明を1件比較。","後付け理由を特定。","Bonus Interview任意。",null],
-[8,2,"科学としての説得","social","Week 2","Lecture 2.6: How to Be Persuasive（15分）","EN","説得をトーク術ではなく受け手・メッセージ・状況の適合で扱うため。","提案文を関心・証拠・行動摩擦の3点で修正。","修正理由を説明。","追加読書は後回し。","schooComm"],
-[9,2,"Social Influence","social","Week 2","Lecture 2.8: Social Influence（19分）","EN","他者の選択・規範・所属集団が購買を変えるから。","descriptive normとinjunctive normを各1つ設計。","2種類を混同せず説明。","環境メッセージ読書任意。",null],
-[10,2,"Conformity or Divergence","viral","Module 2","Normative Influence（6分）＋ Conformity or Divergence?（4分）","EN","人気訴求が効く人と差別化欲求が強い人を分けるため。","同じ商品の同調訴求と差別化訴求を各1案。","2つの社会的動機で売り分け。","Quiz任意。",null],
-[11,3,"Buyer Psychologyを会話へ","selling","Module 1","Buyer psychology / trust-led conversation該当講義","EN","心理学を診断会話へ落とすため。","状況・課題・影響・理想を聞く質問を各1つ作成。","Open questionを4つ作成。","概要は飛ばす。",null],
-[12,3,"表面ニーズと真因","selling","Consultative discovery","Uncovering customer needs該当講義","EN","最初の要望は原因でなく症状であることが多いから。","問題→影響→感情→意思決定障害の診断シートを1件。","真因仮説を2つ作る。","一般営業説明は飛ばす。",null],
-[13,3,"質問で仮説を検証","selling","Consultative discovery","Questioning / active listening該当講義","EN","断定せず相手の言葉で仮説を確かめるため。","仮説確認質問を5つ作成。","誘導質問との差を説明。","課題提出不要。",null],
-[14,3,"Objection Mapping","selling","Objection handling","Handling objections該当講義","EN","反論を資金・価値・信頼・権限・緊急性・比較・継続不安へ分類するため。","過去反論10件を8分類。","各反論に診断質問を1つ。","スクリプト暗記禁止。",null],
-[15,3,"診断会話の実地テスト","selling","Application","新規講義なし","JP","実際に相手理解が深まったか検証するため。","1人に20分の診断会話。助言は最後の5分までしない。","相手が整理でき、真因を1文で記録。","講義視聴禁止。",null],
-[16,4,"Segmentation & Targeting","marketing","Module 1","Segmentation and Targeting（13分）","EN","万人向けの価値は誰にも強く刺さらないから。","状況・目的・障害で3セグメント。","異なる購入理由を説明。","Marketing 101既知なら飛ばす。",null],
-[17,4,"Brand Positioning","marketing","Module 1","Brand Positioning（13分）＋ Brand Mantra（10分）","EN","価値は比較対象の中でどう理解されるかで決まるから。","For/Who/Offering/Unlike/Because文を作る。","差を顧客価値で1文化。","Quiz任意。","schooComm"],
-[18,4,"プライシングの科学","schooPrice","第9回","本編：プライシング（価格設定）の科学","JP","価格を価値認知・比較・需要の設計として扱うため。","Good / Better / Bestの3価格案。","価格差を顧客価値で説明。","質疑応答は必要部分のみ。",null],
-[19,4,"Customer Centricity","marketing","Customer Centricity","顧客中心主義・顧客価値の指定講義","EN","顧客適合性と長期価値で資源配分するため。","最重要・育成・非適合顧客を定義。","誰を顧客にしないか言える。","分析詳細は後回し。",null],
-[20,4,"Value Proposition Test","marketing","Application","新規講義なし","JP","セグメント・ポジション・価格の整合を確認するため。","商品ページのHero、価値3点、価格説明、CTAを修正。","第三者が30秒で説明できる。","新教材禁止。",null],
-[21,5,"BATNAとRV","globisBatna","日本語記事","BATNA・RV・交渉前の立場整理","JP","交渉の強さは話術より代替案で決まるから。","自分BATNA、相手BATNA、RVを記入。","撤退条件を具体化。","全文読む。",null],
-[22,5,"Prepare：交渉分析","negotiation","Prepare","Plan Your Negotiation Strategy該当動画","EN","論点・優先順位・代替案を事前設計するため。","目的、論点、優先順位、BATNA、RV、相手仮説を1枚に。","Decision Brief完成。","Welcome飛ばす。","globisBatna"],
-[23,5,"論点を増やして価値を作る","globisIssues","日本語記事","価格以外の関心事を増やす","JP","複数論点なら価値交換が可能になるから。","価格以外の論点を8個列挙。","低コスト・高価値条件を2つ。","全文読む。",null],
-[24,5,"Win-Winと条件付き合意","globisWin","日本語動画","相手ニーズと価値交換","JP","妥協でなく異なる優先順位で総価値を増やすため。","If–Then型条件付き提案を3案。","双方のリスク低減条件を1つ。","なし。",null],
-[25,5,"模擬交渉と振り返り","negotiation","Practice","Module 6の実践交渉を簡易実施","EN/JP","準備・会話・振り返りで交渉力を実装するため。","15分模擬交渉を録音しレビュー。","変える行動を3つ具体化。","Final Exam不要。",null],
-[26,6,"What Makes Ideas Sticky?","viral","Module 1","Simple / Unexpected / Concrete / Credible / Emotional Stories（31分）","EN","洞察も記憶されなければ市場で存在しないから。","HCE説明をSUCCESsで修正。","一文Core Messageと具体例完成。","Quiz任意。",null],
-[27,6,"Social Influence in Market","viral","Module 2","Power of Social Influence＋Using Social Influence（16分）","EN","顧客理解を口コミ・所属・可視性へ拡張するため。","社会的証明、可視性、紹介導線を各1つ。","実態に基づく設計。","NormativeはDay10済み。",null],
-[28,6,"Word of Mouth / STEPPS","viral","Module 3","STEPPS講義群","EN","共有理由を運任せでなく構造化するため。","STEPPSで1企画を採点し不足2点を改善。","改善投稿案完成。","Quiz任意。",null],
-[29,6,"Commercial Psychology Mini Audit","schooPsych","応用","カスタマージャーニー確認→独自診断へ統合","JP","知識を他者へ提供できる診断へ変えるため。","認知→接続→信頼→判断→購入→継続の診断シート作成。","第三者1人へ使用。","既知箇所は倍速。",null],
-[30,6,"初回有料提案とHCE統合","marketing","Capstone","新規講義なし","JP","学習を収益と知的資産の開始地点にするため。","Mini Auditを1人へ提案し価格を提示、HCEへ記録。","提案・feedback・次版・価格を保存。","新講義禁止。",null]
-].map(x=>({d:x[0],stage:x[1],title:x[2],course:x[3],module:x[4],lesson:x[5],lang:x[6],why:x[7],apply:x[8],pass:x[9],skip:x[10],jp:x[11]}));
+[1,1,"現実は心理的に構築される","social","Week 1","Psychological Construction of Reality","Concept","事実・解釈・感情・行動を分離","同じ事実に3つの代替解釈","別解釈を3つ作成"],
+[2,1,"Confirmation Biasを4セルで検証","social","Week 1","Confirmation Bias","Diagnosis","仮説あり×購買あり／仮説あり×購買なし／仮説なし×購買あり／仮説なし×購買なしを埋める","4セル証拠表","空欄セルに必要なデータを定義"],
+[3,1,"Self-Fulfilling Prophecyの循環","social","Week 1","Self-Fulfilling Prophecies","Diagnosis","期待→自分の微細行動→相手の反応→循環結果→代替行動→残る外部要因","因果循環図","自己要因と相手・環境要因を分離"],
+[4,1,"Integration Gate 1","social","Application","Day1〜3統合診断","Experiment","観測事実／本人解釈／初期仮説／支持証拠／否定証拠／自分の期待行動／相手反応／別介入／次の質問を1枚化","Commercial Diagnosis Canvas v0.1","9項目すべて記入"],
+
+[5,2,"Attribution：性格と状況","social","Week 2","Attribution Theory","Concept","Person／Situation／Systemへ再分類","原因マップ","各層に2要因以上"],
+[6,2,"証拠と推測を分ける","psychjp","応用","顧客発言の証拠化","Diagnosis","逐語発言、観察事実、解釈、未確認仮説を別欄へ","Evidence Log v1","推測を事実欄へ混入させない"],
+[7,2,"仮説を区別する質問","selling","Discovery","Questioning and Active Listening","Experiment","競合する2仮説を区別できる質問を3つ作り1人に試す","Discriminating Questions","回答により仮説順位を更新"],
+[8,2,"Jobs to Be Done Lens","psychjp","応用","状況・進歩・代替・不安","Concept","顧客が片付けたいJob、進歩、現在の代替、切替不安を記述","JTBD Snapshot","機能要望ではなく進歩で表現"],
+[9,2,"Interview Round 1","selling","Application","15〜20分顧客インタビュー","Experiment","助言せず、過去行動と具体状況を聞く","Interview Record 1","引用5件、仮説更新3件"],
+
+[10,3,"Loss Aversion","social","Application","損失回避の商業適用","Concept","購入する損失／購入しない損失を分離","Loss Map","双方を誇張せず具体化"],
+[11,3,"Reference Point & Anchoring","price","本編","参照点・アンカー・価格比較","Diagnosis","顧客が比較している基準価格、代替費用、時間費用を特定","Reference Point Sheet","最低3参照点"],
+[12,3,"Framing Experiment","marketing","Application","Gain frame vs Loss frame","Experiment","同一提案を利得表現と損失回避表現で2案作り反応比較","A/B Message Test 1","予測と結果の差を記録"],
+[13,3,"Choice Overload & Defaults","marketing","Application","選択肢・推奨・デフォルト","Concept","現行選択肢の数、比較負荷、推奨不足を診断","Choice Architecture Map","削る選択肢と推奨案を定義"],
+[14,3,"Friction Audit","psychjp","Journey","手間・不確実性・待ち時間・権限","Diagnosis","認知から購入までの各摩擦を時系列化","Friction Audit","最低10摩擦"],
+[15,3,"Friction Reduction Test","marketing","Application","1つの摩擦だけを除去","Experiment","フォーム、説明、予約、CTA等を一箇所変更し反応を見る","Micro Experiment 2","変更前後を同条件で比較"],
+
+[16,4,"Trust Formation","selling","Trust-led sales","能力・善意・一貫性・証拠","Concept","信頼不足を能力、善意、透明性、実績、予測可能性へ分類","Trust Matrix","不足領域を2つ特定"],
+[17,4,"Risk Perception Interview","selling","Discovery","リスク・不安・失敗想像","Diagnosis","何が起きるのが怖いか、誰に説明が必要か、失敗時の損失を聞く","Interview Record 2","具体的恐怖を引用3件"],
+[18,4,"Objection Taxonomy","selling","Objection handling","反論の真因分類","Concept","資金、価値、信頼、権限、緊急性、比較、継続不安、自己像へ分類","Objection Table v1","過去反論10件"],
+[19,4,"Objection Discrimination","selling","Application","反論を区別する質問","Experiment","各反論分類に検証質問を1つ作り実会話で試す","Question Bank v1","質問後に分類変更を記録"],
+[20,4,"Post-Purchase Rationalization","social","Week 2","Cognitive Dissonance","Diagnosis","購入後・離脱後の自己正当化を分析","Rationalization Map","選択前後の理由を比較"],
+[21,4,"Interview Round 3 + Synthesis","selling","Application","診断面談","Experiment","反論・信頼・リスクを含む20分面談","Interview Record 3","真因、証拠、代替仮説、次介入を確定"],
+
+[22,5,"Segmentation by Decision Context","marketing","Module 1","Segmentation and Targeting","Concept","属性でなく状況・Job・摩擦・リスクで顧客を分ける","Decision Segments","3セグメント"],
+[23,5,"Value Proposition Evidence","marketing","Module 1","Brand Positioning","Diagnosis","価値主張ごとに証拠、反証、未検証点を整理","Value Evidence Table","主張3件を証拠付きに"],
+[24,5,"Willingness to Pay Interview","price","応用","価格受容・予算・比較・回収","Experiment","価格を直接聞くだけでなく比較、犠牲、回収条件を聞く","Interview Record 4","価格判断根拠を引用3件"],
+[25,5,"Good / Better / Best","price","本編","価格階層と価値差","Concept","3価格案と対象顧客、価値差、除外条件を設計","Pricing Architecture","価格差を機能でなく価値で説明"],
+[26,5,"Offer Experiment","marketing","Application","価値・価格・リスク低減を統合","Experiment","1人に提案し、理解、信頼、価格、摩擦の反応を測る","Offer Test 1","予測・反応・差分を記録"],
+[27,5,"Intervention Review","marketing","Application","介入前後の比較","Diagnosis","メッセージ、質問、価格、摩擦の変更と結果を比較","Intervention Report","効果・副作用・不確実性を記載"],
+
+[28,6,"Diagnostic Procedure v1","selling","Synthesis","再現可能な診断手順","Concept","準備→観察→質問→仮説→反証→介入→測定→更新を手順化","Commercial Psychology Audit v1","第三者が手順を追える"],
+[29,6,"Pilot Audit","selling","Application","第三者1名へ実施","Experiment","45分診断＋1枚の改善提案","Pilot Client File","相手のfeedbackと改善点"],
+[30,6,"Paid Proposal & HCE Integration","viral","Application","商品化・提案・知的資産化","Experiment","価格、範囲、成果物を提示し有料提案。全データをHCEへ統合","Commercial Psychology Portfolio v1","診断書、面談3〜5件、反論表、価格仮説、実験結果、手順書"]
+].map(x=>({d:x[0],stage:x[1],title:x[2],course:x[3],module:x[4],lesson:x[5],cycle:x[6],apply:x[7],asset:x[8],pass:x[9]}));
+
 const $=id=>document.getElementById(id),pad=n=>String(n).padStart(2,"0");
-const keyOf=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`,formatDate=d=>d.toLocaleDateString("ja-JP",{year:"numeric",month:"long",day:"numeric",weekday:"short"});
-function dateFromDay(n){let d=new Date(START);d.setDate(d.getDate()+n-1);return d}function dayNumber(d){return Math.floor((new Date(d.getFullYear(),d.getMonth(),d.getDate())-START)/86400000)+1}
+const keyOf=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const formatDate=d=>d.toLocaleDateString("ja-JP",{year:"numeric",month:"long",day:"numeric",weekday:"short"});
+function dateFromDay(n){let d=new Date(START);d.setDate(d.getDate()+n-1);return d}
+function dayNumber(d){return Math.floor((new Date(d.getFullYear(),d.getMonth(),d.getDate())-START)/86400000)+1}
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),plan=n=>D.find(x=>x.d===n)||D[29],stage=n=>stages.find(x=>n>=x.start&&n<=x.end)||stages[5];
-function ds(k){if(!state.days[k])state.days[k]={checks:[false,false,false],note:""};return state.days[k]}function completion(k){let x=state.days[k];return x?x.checks.filter(Boolean).length/3:0}
-function localSave(){localStorage.setItem(KEY,JSON.stringify(state))}function queueSave(){localSave();clearTimeout(syncTimer);syncTimer=setTimeout(pushCloudState,350)}
-async function loadCloudState(){try{let r=await fetch("/api/state",{cache:"no-store"});if(!r.ok)throw 0;let x=await r.json();if(x?.state){state=x.state;localSave()}cloudReady=true;renderAll()}catch{cloudReady=false;renderAll()}}
+function ds(k){if(!state.days[k])state.days[k]={checks:[false,false,false,false,false],note:""};if(state.days[k].checks.length<5)state.days[k].checks=[...state.days[k].checks,false,false].slice(0,5);return state.days[k]}
+function completion(k){let x=state.days[k];return x?x.checks.filter(Boolean).length/5:0}
+function localSave(){localStorage.setItem(KEY,JSON.stringify(state))}
+function queueSave(){localSave();clearTimeout(syncTimer);syncTimer=setTimeout(pushCloudState,350)}
+async function loadCloudState(){try{let r=await fetch("/api/state",{cache:"no-store"});if(!r.ok)throw 0;let x=await r.json();if(x?.state){state=x.state;if(!state.case)state.case={};if(!state.evidence)state.evidence={};localSave()}cloudReady=true;renderAll()}catch{cloudReady=false;renderAll()}}
 async function pushCloudState(){localSave();try{let r=await fetch("/api/state",{method:"PUT",headers:{"Content-Type":"application/json"},body:JSON.stringify({state})});if(!r.ok)throw 0;cloudReady=true}catch{cloudReady=false}renderSync()}
 function renderSync(){$("syncStatus").textContent=cloudReady?"Cloud同期済み":"ローカル保存中"}
+
+function bindCase(){
+ ["caseName","casePerson","caseProblem","caseGoal"].forEach(id=>{let el=$(id);el.value=state.case[id]||"";el.oninput=()=>{state.case[id]=el.value;queueSave()}})
+}
+
 function renderHero(){let n=clamp(dayNumber(new Date()),1,30),s=stage(n),done=0;for(let i=1;i<=30;i++)done+=completion(keyOf(dateFromDay(i)));let score=Math.round(done*100);$("heroDay").textContent=`Day ${n}`;$("heroPhase").textContent=`Stage ${stages.indexOf(s)+1}`;$("heroScore").textContent=score;$("levelNum").textContent=Math.max(1,Math.floor(score/100)+1);$("todayDate").textContent=formatDate(new Date())}
-function renderMission(){let n=clamp(dayNumber(selectedDate),1,30),p=plan(n),d=ds(keyOf(selectedDate)),c=C[p.course];$("missionGoal").textContent=p.title;$("whyText").innerHTML=`${p.why}<br><br><strong>指定箇所：</strong>${c.name} → ${p.module} → ${p.lesson}`;let tasks=[`指定講義：${p.lesson}`,`実践：${p.apply}`,`合格判定：${p.pass}`];$("todayTasks").innerHTML=tasks.map((t,i)=>`<label class="task"><input type="checkbox" data-i="${i}" ${d.checks[i]?"checked":""}><div><div class="task-title">${t}</div><div class="task-desc">${d.checks[i]?"完了済み・自動保存":"今日の必須アクション"}</div></div></label>`).join("");document.querySelectorAll("#todayTasks input").forEach(cb=>cb.onchange=()=>{d.checks[+cb.dataset.i]=cb.checked;queueSave();renderAll()});$("dailyNote").value=d.note||"";$("dailyNote").oninput=()=>{d.note=$("dailyNote").value;queueSave();renderGarden();renderLogs()};$("selectedDateLabel").textContent=formatDate(selectedDate)}
+function renderMission(){
+ let n=clamp(dayNumber(selectedDate),1,30),p=plan(n),d=ds(keyOf(selectedDate)),s=SOURCES[p.course];
+ $("missionGoal").textContent=p.title;
+ $("whyText").innerHTML=`<strong>${p.cycle}</strong>｜${p.apply}<br><br><strong>指定教材：</strong>${s.name} → ${p.module} → ${p.lesson}`;
+ let tasks=[
+ `指定教材を確認：${p.lesson}`,
+ `証拠と推測を分けた`,
+ `代替仮説を作った`,
+ `仮説を区別する質問または介入を作った`,
+ `実際の反応・予測との差を記録した`
+ ];
+ $("todayTasks").innerHTML=tasks.map((t,i)=>`<label class="task"><input type="checkbox" data-i="${i}" ${d.checks[i]?"checked":""}><div><div class="task-title">${t}</div><div class="task-desc">${d.checks[i]?"完了済み・自動保存":"専門家基準"}</div></div></label>`).join("");
+ document.querySelectorAll("#todayTasks input").forEach(cb=>cb.onchange=()=>{d.checks[+cb.dataset.i]=cb.checked;queueSave();renderAll()});
+ $("dailyNote").value=d.note||"";$("dailyNote").placeholder=`本日の成果物：${p.asset}\n完了条件：${p.pass}\n予測／実際の反応／差分／次の仮説`;
+ $("dailyNote").oninput=()=>{d.note=$("dailyNote").value;queueSave();renderGarden();renderLogs()};
+ $("selectedDateLabel").textContent=formatDate(selectedDate)
+}
 function renderJourney(){let cur=clamp(dayNumber(new Date()),1,30);$("journey").innerHTML=stages.map((s,i)=>`<div class="station ${cur>s.end?"done":cur>=s.start&&cur<=s.end?"current":""}"><div class="dot"></div><h4>${s.name}</h4><p>${s.jp}</p><span class="phase-tag">Stage ${i+1}</span></div>`).join("")}
-function renderCurriculum(){let cur=clamp(dayNumber(new Date()),1,30),o="";stages.forEach((s,si)=>{o+=`<div class="stage-summary" style="grid-column:1/-1"><h4>Stage ${si+1} · ${s.name}｜${s.jp}</h4><p>${s.why}</p></div>`;D.filter(x=>x.stage===si+1).forEach(p=>{let c=C[p.course],j=p.jp?C[p.jp]:null,co=completion(keyOf(dateFromDay(p.d)));o+=`<article class="day-card ${p.d===cur?"current":""} ${co===1?"completed":""}"><div class="day-top"><div><div class="day-num">Day ${p.d}</div><h4>${p.title}</h4></div><span class="badge core">${c.provider}</span></div><div class="day-badges"><span class="badge ${p.lang==="JP"?"jp":"en"}">${p.lang==="JP"?"日本語":"英語＋翻訳字幕"}</span><span class="badge">${p.module}</span></div><div class="lesson-path"><strong>指定箇所</strong><br>${p.lesson}</div><div class="day-section"><b>なぜ学ぶか</b><p>${p.why}</p></div><div class="day-section"><b>今日の実践成果物</b><p>${p.apply}</p></div><div class="pass-box"><b>完了条件</b><br><span>${p.pass}</span></div><div class="day-section"><b>飛ばす箇所</b><p>${p.skip}</p></div><div class="day-links"><a class="day-link" href="${c.url}" target="_blank">${c.name} ↗</a>${j?`<a class="day-link" href="${j.url}" target="_blank">日本語補助：${j.name} ↗</a>`:""}</div></article>`})});$("curriculumGrid").className="daily-plan";$("curriculumGrid").innerHTML=o}
+function renderCurriculum(){
+ let cur=clamp(dayNumber(new Date()),1,30),o="";
+ stages.forEach((s,si)=>{o+=`<div class="stage-summary" style="grid-column:1/-1"><h4>Stage ${si+1} · ${s.name}｜${s.jp}</h4><p>${s.start}〜${s.end}日目。成果物は同じCore Caseへ累積します。</p></div>`;
+ D.filter(x=>x.stage===si+1).forEach(p=>{let src=SOURCES[p.course],co=completion(keyOf(dateFromDay(p.d)));o+=`<article class="day-card ${p.d===cur?"current":""} ${co===1?"completed":""}">
+ <div class="day-top"><div><div class="day-num">Day ${p.d} · ${p.cycle}</div><h4>${p.title}</h4></div><span class="badge core">${src.provider}</span></div>
+ <div class="day-badges"><span class="badge">${p.module}</span><span class="badge ${p.cycle==="Experiment"?"jp":"en"}">${p.cycle}</span></div>
+ <div class="lesson-path"><strong>指定箇所</strong><br>${p.lesson}</div>
+ <div class="day-section"><b>同一案件への適用</b><p>${p.apply}</p></div>
+ <div class="day-section"><b>累積成果物</b><p>${p.asset}</p></div>
+ <div class="pass-box"><b>完了条件</b><br><span>${p.pass}</span></div>
+ <a class="day-link" href="${src.url}" target="_blank">${src.name} ↗</a>
+ </article>`})});
+ $("curriculumGrid").className="daily-plan";$("curriculumGrid").innerHTML=o
+}
 function renderMetrics(){let tc=completion(keyOf(selectedDate)),e=clamp(dayNumber(new Date()),0,30),pl=e/30,done=0;for(let i=1;i<=30;i++)done+=completion(keyOf(dateFromDay(i)));let ac=done/30,de=(ac-pl)*100;$("todayPct").textContent=`${Math.round(tc*100)}%`;$("todayBar").style.width=`${tc*100}%`;$("journeyPct").textContent=`${Math.round(ac*100)}%`;$("journeyBar").style.width=`${ac*100}%`;$("deltaValue").textContent=`${de>=0?"+":""}${de.toFixed(1)}`;$("deltaText").textContent=Math.abs(de)<1?"予定通りです":de<0?`予定より${Math.abs(de).toFixed(1)}ポイント遅れ`:`予定より${de.toFixed(1)}ポイント先行`}
 function renderCalendar(){let h=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join(""),f=dateFromDay(1);for(let i=0;i<f.getDay();i++)h+='<div class="day empty"></div>';for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),c=completion(k),cl=c===1?"done":c>0?"partial":d<new Date()?"missed":"";h+=`<div class="day ${cl} ${k===keyOf(new Date())?"today":""}" data-k="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`}$("calendar").innerHTML=h;document.querySelectorAll(".day[data-k]").forEach(e=>e.onclick=()=>{selectedDate=new Date(e.dataset.k+"T00:00:00");renderMission();renderMetrics()})}
 function renderGarden(){$("garden").innerHTML=Array.from({length:100},(_,i)=>`<div class="seed ${i<30&&(state.days[keyOf(dateFromDay(i+1))]?.note||"").trim()?"active":""}"></div>`).join("")}
 function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function renderLogs(){let q=$("searchLog").value.toLowerCase(),f=$("filterStatus").value,r=[];for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),x=state.days[k],c=completion(k),st=c===1?"done":c>0?"partial":"none";if(!x&&d>new Date())continue;if(f!=="all"&&f!==st)continue;if(q&&!((x?.note||"").toLowerCase().includes(q)))continue;r.push({d,k,n,x,c})}r.reverse();$("logList").innerHTML=r.length?r.map(x=>`<div class="log-row"><div class="log-date">${formatDate(x.d)} · Day ${x.n}</div><div class="log-meta">${plan(x.n).title}｜完了率 ${Math.round(x.c*100)}%</div><div class="log-text">${esc(x.x?.note||"記録なし")}</div><button class="btn soft" style="margin-top:7px;padding:6px 9px" onclick="editDate('${x.k}')">編集</button></div>`).join(""):'<div class="small-note">該当するログはありません。</div>'}
 function editDate(k){selectedDate=new Date(k+"T00:00:00");renderMission();renderMetrics();scrollTo({top:0,behavior:"smooth"})}window.editDate=editDate;
-$("markAll").onclick=()=>{ds(keyOf(selectedDate)).checks=[true,true,true];queueSave();renderAll()};$("clearDay").onclick=()=>{if(confirm("この日のチェックとログを解除しますか？")){delete state.days[keyOf(selectedDate)];queueSave();renderAll()}};$("searchLog").oninput=renderLogs;$("filterStatus").onchange=renderLogs;$("syncBtn").onclick=pushCloudState;$("exportBtn").onclick=()=>{let b=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="commercial-psychology-log.json";a.click();URL.revokeObjectURL(a.href)};
-function renderAll(){renderSync();renderHero();renderMission();renderJourney();renderCurriculum();renderMetrics();renderCalendar();renderGarden();renderLogs()}renderAll();loadCloudState();
+$("markAll").onclick=()=>{ds(keyOf(selectedDate)).checks=[true,true,true,true,true];queueSave();renderAll()};$("clearDay").onclick=()=>{if(confirm("この日のチェックとログを解除しますか？")){delete state.days[keyOf(selectedDate)];queueSave();renderAll()}};$("searchLog").oninput=renderLogs;$("filterStatus").onchange=renderLogs;$("syncBtn").onclick=pushCloudState;$("exportBtn").onclick=()=>{let b=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="commercial-psychology-v7-log.json";a.click();URL.revokeObjectURL(a.href)};
+function renderAll(){renderSync();bindCase();renderHero();renderMission();renderJourney();renderCurriculum();renderMetrics();renderCalendar();renderGarden();renderLogs()}renderAll();loadCloudState();
 </script>
 </body>
 </html>
