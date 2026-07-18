@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Psychology Learning OS</title>
+<style>
+:root{
+  --bg:#f5f1ea;--panel:#fffdf9;--ink:#191816;--muted:#766f65;--line:#ddd4c7;
+  --accent:#92704a;--accent2:#cdbb9f;--soft:#eee6db;--green:#dfe9df;--red:#f0dfdc;
+  --shadow:0 10px 32px rgba(51,41,28,.08)
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",sans-serif}
+.wrap{max-width:1380px;margin:0 auto;padding:22px}
+header{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;margin-bottom:18px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:38px;line-height:1;margin:0 0 8px}
+.sub{color:var(--muted);font-size:14px;line-height:1.6;max-width:820px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+.topgrid{display:grid;grid-template-columns:1.45fr .55fr;gap:16px;margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.stat{background:var(--soft);padding:13px;border-radius:13px}
+.stat small{display:block;color:var(--muted);font-size:11px}
+.stat strong{display:block;font-size:23px;margin-top:3px}
+.progress-wrap{margin-top:12px}
+.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:5px}
+.progress{height:11px;border-radius:999px;background:var(--soft);overflow:hidden}
+.bar{height:100%;width:0;background:var(--accent)}
+.bar.actual{background:#4d6751}
+.delta{margin-top:9px;font-size:13px;font-weight:700}
+.delta.behind{color:#9d473d}.delta.ahead{color:#46644c}.delta.equal{color:var(--muted)}
+.section-title{display:flex;justify-content:space-between;gap:12px;align-items:end;margin-bottom:12px}
+.section-title h2{font-size:18px;margin:0}
+.section-title span{font-size:12px;color:var(--muted)}
+.curriculum{margin-bottom:16px}
+.timeline{display:grid;grid-template-columns:repeat(6,minmax(210px,1fr));gap:12px;overflow-x:auto;padding-bottom:4px}
+.phase{border:1px solid var(--line);border-radius:15px;padding:14px;background:#fff}
+.phase.current{outline:2px solid var(--accent);outline-offset:2px}
+.phase-title{font-weight:800;font-size:14px;margin-bottom:4px}
+.phase-period{font-size:11px;color:var(--muted);margin-bottom:10px}
+.phase ul{margin:0;padding-left:17px;color:#4e4943;font-size:12px;line-height:1.55}
+.course-link{display:block;margin-top:10px;font-size:12px;color:var(--accent);text-decoration:none;font-weight:700}
+.main{display:grid;grid-template-columns:1.15fr .85fr;gap:16px}
+.today-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px}
+.today-badge{font-size:12px;background:var(--soft);padding:7px 10px;border-radius:999px}
+.parallel{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.track{border:1px solid var(--line);border-radius:14px;padding:14px}
+.track h3{font-size:14px;margin:0 0 10px}
+.track.plan{background:#faf5ed}.track.actual{background:#f5f8f5}
+.item{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--line)}
+.item:first-of-type{border-top:0}
+input[type=checkbox]{width:20px;height:20px;margin-top:1px;accent-color:var(--accent)}
+.item-title{font-weight:700;font-size:13px}
+.item-desc{font-size:12px;color:var(--muted);line-height:1.45;margin-top:3px}
+textarea,input[type=text],input[type=date],select{width:100%;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;font:inherit}
+textarea{min-height:88px;resize:vertical}
+.log-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.log-list{max-height:610px;overflow:auto}
+.log-row{border-top:1px solid var(--line);padding:11px 0}
+.log-row:first-child{border-top:0}
+.log-date{font-weight:800;font-size:13px}
+.log-meta{font-size:11px;color:var(--muted);margin:3px 0 7px}
+.log-text{font-size:12px;line-height:1.5}
+button{border:0;border-radius:10px;padding:10px 13px;background:var(--ink);color:#fff;font-weight:700;cursor:pointer}
+button.secondary{background:var(--soft);color:var(--ink)}
+button.danger{background:#8f4038}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:12px}
+.cal-head{font-size:10px;color:var(--muted);text-align:center}
+.day{min-height:54px;border:1px solid var(--line);border-radius:9px;padding:6px;background:#fff;font-size:10px;cursor:pointer}
+.day.empty{visibility:hidden}
+.day.today{outline:2px solid var(--accent)}
+.day.done{background:var(--green)}
+.day.partial{background:#f3eadc}
+.day.missed{background:var(--red)}
+.day strong{display:block;font-size:11px}
+.legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;font-size:10px;color:var(--muted)}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:4px}
+.edit-note{font-size:11px;color:var(--muted);margin-top:7px}
+@media(max-width:950px){
+ .topgrid,.main{grid-template-columns:1fr}
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .parallel{grid-template-columns:1fr}
+ h1{font-size:31px}
+ .wrap{padding:14px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <h1>Commercial Psychology Learning OS</h1>
+    <div class="sub">2026年7月18日開始・30日実践型カリキュラム。全体計画、今日の予定地点、実際の到達地点、日次チェック、編集可能な学習ログを一画面で管理します。</div>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+  <span class="today-badge" id="syncStatus">同期確認中</span>
+  <button class="secondary" id="syncBtn">今すぐ同期</button>
+  <button class="secondary" id="exportBtn">ログを書き出す</button>
+</div>
+</header>
+
+<div class="topgrid">
+  <section class="card">
+    <div class="section-title"><h2>予定進捗 vs 実績進捗</h2><span id="dayLabel"></span></div>
+    <div class="stats">
+      <div class="stat"><small>開始日から</small><strong id="elapsedDays">0日</strong></div>
+      <div class="stat"><small>予定進捗</small><strong id="plannedPct">0%</strong></div>
+      <div class="stat"><small>実績進捗</small><strong id="actualPct">0%</strong></div>
+      <div class="stat"><small>完了タスク</small><strong id="doneTasks">0</strong></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>本来あるべき位置</span><span id="plannedText"></span></div>
+      <div class="progress"><div class="bar" id="plannedBar"></div></div>
+    </div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span>実際の位置</span><span id="actualText"></span></div>
+      <div class="progress"><div class="bar actual" id="actualBar"></div></div>
+    </div>
+    <div class="delta" id="deltaText"></div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>30日カレンダー</h2><span>日付を押して編集</span></div>
+    <div id="calendar" class="calendar"></div>
+    <div class="legend">
+      <span><i style="background:var(--green)"></i>完了</span>
+      <span><i style="background:#f3eadc"></i>一部完了</span>
+      <span><i style="background:var(--red)"></i>未完了</span>
+    </div>
+  </section>
+</div>
+
+<section class="card curriculum">
+  <div class="section-title"><h2>全体カリキュラム</h2><span>横スクロールで全期間を俯瞰</span></div>
+  <div class="timeline" id="timeline"></div>
+</section>
+
+<div class="main">
+  <section class="card">
+    <div class="today-head">
+      <div><h2 style="margin:0 0 4px;font-size:18px" id="selectedTitle">今日の進捗</h2><div class="small" id="selectedPhase"></div></div>
+      <div class="today-badge" id="selectedDateBadge"></div>
+    </div>
+
+    <div class="parallel">
+      <div class="track plan">
+        <h3>本来今日までに進んでいるべき内容</h3>
+        <div id="plannedTasks"></div>
+      </div>
+      <div class="track actual">
+        <h3>実際の進捗・完了チェック</h3>
+        <div id="actualTasks"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px">
+      <label class="item-title">学習・実践ログ</label>
+      <textarea id="dailyNote" placeholder="学んだこと、使った場面、結果、次に試すこと"></textarea>
+      <div class="edit-note">チェック操作とログ入力は自動保存されます。過去日付もカレンダーから選択して修正できます。</div>
+    </div>
+    <div class="actions">
+      <button id="markAll">この日をすべて完了</button>
+      <button class="secondary" id="clearDay">この日の記録を修正／解除</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title"><h2>学習ログ履歴</h2><span>最新順</span></div>
+    <div class="log-controls">
+      <input type="text" id="searchLog" placeholder="ログ内検索">
+      <select id="filterStatus">
+        <option value="all">すべて</option>
+        <option value="done">完了日のみ</option>
+        <option value="partial">一部完了</option>
+        <option value="none">未完了</option>
+      </select>
+    </div>
+    <div id="logList" class="log-list"></div>
+  </section>
+</div>
+</div>
+
+<script>
+const START = new Date("2026-07-18T00:00:00");
+const TOTAL_DAYS = 30;
+const KEY = "commercialPsychologyLearningOS_v3";
+let state = JSON.parse(localStorage.getItem(KEY) || '{"days":{}}');
+let selectedDate = new Date();
+let syncTimer = null;
+let cloudReady = false;
+
+async function loadCloudState(){
+  try{
+    const res = await fetch("/api/state", {cache:"no-store"});
+    if(!res.ok) throw new Error("Cloud load failed");
+    const data = await res.json();
+    if(data && data.state){
+      state = data.state;
+      localStorage.setItem(KEY, JSON.stringify(state));
+    }
+    cloudReady = true;
+    renderAll();
+  }catch(e){
+    console.warn("Cloud sync unavailable; using local data.", e);
+  }
+}
+
+async function pushCloudState(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+  try{
+    const res = await fetch("/api/state", {
+      method:"PUT",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({state})
+    });
+    if(!res.ok) throw new Error("Cloud save failed");
+    cloudReady = true;
+  }catch(e){
+    cloudReady = false;
+    console.warn("Cloud save unavailable; local copy preserved.", e);
+  }
+}
+
+function queueCloudSave(){
+  localStorage.setItem(KEY, JSON.stringify(state));
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(pushCloudState, 350);
+}
+
+const curriculum = [
+ {name:"Phase 1｜反論の真因を見抜く",start:1,end:5,goal:"表面的な断り文句と本当の障害を分離する",tasks:["講義20分","実例を1件観察","反論の真因を3仮説化"],course:"Marketing Psychology & Consumer Behavior",url:"https://www.coursera.org/learn/marketing-psychology-consumer-behavior"},
+ {name:"Phase 2｜質問と傾聴",start:6,end:10,goal:"仮説を押し付けず、質問で真因を確認する",tasks:["質問技法を学ぶ","会話で1回実践","質問の反応を記録"],course:"Consultative Selling Foundations",url:"https://www.coursera.org/learn/consultative-selling-foundations-for-complex-deals"},
+ {name:"Phase 3｜価値と価格の再設計",start:11,end:15,goal:"価格ではなく期待価値・不確実性・支払条件を診断する",tasks:["価値認知を学ぶ","商品1件を分析","改善案を1つ作成"],course:"B2B Sales: Questions & Active Listening",url:"https://www.coursera.org/specializations/effective-sales"},
+ {name:"Phase 4｜交渉と合意形成",start:16,end:20,goal:"押し切らずに条件・利害・不安を調整する",tasks:["交渉講義20分","条件交換を設計","実例を記録"],course:"Introduction to Negotiation — Yale",url:"https://www.coursera.org/learn/negotiation"},
+ {name:"Phase 5｜一対多へ変換",start:21,end:25,goal:"会話で得た顧客心理をSNS・LP・コピーへ移植する",tasks:["コピー原則を学ぶ","1投稿またはLPを改善","反応を記録"],course:"Google Skillshop",url:"https://skillshop.withgoogle.com/intl/ja_ALL/"},
+ {name:"Phase 6｜商品化と初収益",start:26,end:30,goal:"商業心理学ミニ診断を商品として提示する",tasks:["診断フォーマット作成","1人へ提案","収益・反応を記録"],course:"Strategic Sales Management",url:"https://www.coursera.org/specializations/sales-management-bridging-gap-strategy-sales"}
+];
+
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,"0");
+function keyOf(d){return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`}
+function dayNumber(d){return Math.floor((new Date(d.getFullYear(),d.getMonth(),d.getDate())-START)/86400000)+1}
+function clamp(n,a,b){return Math.max(a,Math.min(b,n))}
+function phaseForDay(n){return curriculum.find(p=>n>=p.start&&n<=p.end)||curriculum[curriculum.length-1]}
+function save(){queueCloudSave()}
+function dateFromDay(n){const d=new Date(START);d.setDate(d.getDate()+n-1);return d}
+function formatDate(d){return d.toLocaleDateString("ja-JP",{year:"numeric",month:"long",day:"numeric",weekday:"short"})}
+
+function renderTimeline(){
+ const currentDay=clamp(dayNumber(new Date()),1,TOTAL_DAYS);
+ $("timeline").innerHTML=curriculum.map(p=>`
+  <div class="phase ${currentDay>=p.start&&currentDay<=p.end?'current':''}">
+   <div class="phase-title">${p.name}</div>
+   <div class="phase-period">Day ${p.start}–${p.end}｜${formatDate(dateFromDay(p.start))}〜${formatDate(dateFromDay(p.end))}</div>
+   <ul><li>${p.goal}</li>${p.tasks.map(x=>`<li>${x}</li>`).join("")}</ul>
+   <a class="course-link" href="${p.url}" target="_blank">${p.course} ↗</a>
+  </div>`).join("");
+}
+
+function taskStateFor(k){
+ if(!state.days[k]) state.days[k]={checks:[false,false,false],note:""};
+ if(!Array.isArray(state.days[k].checks)) state.days[k].checks=[false,false,false];
+ return state.days[k];
+}
+function completionForDay(k){
+ const d=state.days[k];
+ if(!d) return 0;
+ return d.checks.filter(Boolean).length/3;
+}
+
+function renderCalendar(){
+ const heads=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join("");
+ let cells=heads;
+ const first=dateFromDay(1);
+ for(let i=0;i<first.getDay();i++) cells+='<div class="day empty"></div>';
+ for(let n=1;n<=TOTAL_DAYS;n++){
+   const d=dateFromDay(n),k=keyOf(d),c=completionForDay(k);
+   let cls=c===1?"done":c>0?"partial":(d<new Date()?"missed":"");
+   if(k===keyOf(new Date())) cls+=" today";
+   cells+=`<div class="day ${cls}" data-date="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`;
+ }
+ $("calendar").innerHTML=cells;
+ document.querySelectorAll(".day[data-date]").forEach(el=>el.onclick=()=>{selectedDate=new Date(el.dataset.date+"T00:00:00");renderSelected()});
+}
+
+function renderSelected(){
+ const k=keyOf(selectedDate),n=clamp(dayNumber(selectedDate),1,TOTAL_DAYS),p=phaseForDay(n),data=taskStateFor(k);
+ $("selectedTitle").textContent=(k===keyOf(new Date())?"今日の進捗":"進捗編集");
+ $("selectedPhase").textContent=`Day ${n}｜${p.name}｜${p.goal}`;
+ $("selectedDateBadge").textContent=formatDate(selectedDate);
+
+ $("plannedTasks").innerHTML=p.tasks.map((t,i)=>`
+   <div class="item"><div>${i+1}</div><div><div class="item-title">${t}</div><div class="item-desc">この日までに完了する予定の必須項目</div></div></div>`).join("");
+
+ $("actualTasks").innerHTML=p.tasks.map((t,i)=>`
+   <label class="item"><input type="checkbox" data-idx="${i}" ${data.checks[i]?'checked':''}>
+   <div><div class="item-title">${t}</div><div class="item-desc">${data.checks[i]?'完了済み・自動保存':'未完了'}</div></div></label>`).join("");
+
+ document.querySelectorAll("#actualTasks input").forEach(cb=>cb.onchange=()=>{
+   data.checks[Number(cb.dataset.idx)]=cb.checked;save();renderAll(false);
+ });
+ $("dailyNote").value=data.note||"";
+ $("dailyNote").oninput=()=>{data.note=$("dailyNote").value;save();renderLogs()};
+}
+
+function renderProgress(){
+ const todayN=clamp(dayNumber(new Date()),0,TOTAL_DAYS);
+ const planned=clamp(todayN/TOTAL_DAYS*100,0,100);
+ let done=0;
+ for(let n=1;n<=TOTAL_DAYS;n++) done+=completionForDay(keyOf(dateFromDay(n)));
+ const actual=done/TOTAL_DAYS*100;
+ $("elapsedDays").textContent=`${todayN}日`;
+ $("plannedPct").textContent=`${Math.round(planned)}%`;
+ $("actualPct").textContent=`${Math.round(actual)}%`;
+ $("doneTasks").textContent=`${Math.round(done*3)} / ${TOTAL_DAYS*3}`;
+ $("plannedBar").style.width=planned+"%";
+ $("actualBar").style.width=actual+"%";
+ $("plannedText").textContent=`Day ${todayN} / ${TOTAL_DAYS}`;
+ $("actualText").textContent=`換算 Day ${done.toFixed(1)} / ${TOTAL_DAYS}`;
+ $("dayLabel").textContent=`本日：${formatDate(new Date())}`;
+ const delta=actual-planned,el=$("deltaText");
+ el.className="delta "+(delta<-1?"behind":delta>1?"ahead":"equal");
+ el.textContent=Math.abs(delta)<1?"予定通りです":delta<0?`予定より ${Math.abs(delta).toFixed(1)}ポイント遅れています`:`予定より ${delta.toFixed(1)}ポイント先行しています`;
+}
+
+function renderLogs(){
+ const q=$("searchLog").value.toLowerCase(),f=$("filterStatus").value;
+ let rows=[];
+ for(let n=1;n<=TOTAL_DAYS;n++){
+   const d=dateFromDay(n),k=keyOf(d),x=state.days[k],c=completionForDay(k);
+   if(!x && d>new Date()) continue;
+   const status=c===1?"done":c>0?"partial":"none";
+   if(f!=="all"&&f!==status) continue;
+   const text=((x?.note)||"").toLowerCase();
+   if(q && !text.includes(q)) continue;
+   const p=phaseForDay(n);
+   rows.push({d,k,n,x,c,p});
+ }
+ rows.reverse();
+ $("logList").innerHTML=rows.length?rows.map(r=>`
+  <div class="log-row">
+   <div class="log-date">${formatDate(r.d)}｜Day ${r.n}</div>
+   <div class="log-meta">${r.p.name}｜完了率 ${Math.round(r.c*100)}%</div>
+   <div class="log-text">${escapeHtml(r.x?.note||"記録なし")}</div>
+   <button class="secondary" style="margin-top:7px;padding:6px 9px;font-size:11px" onclick="editDate('${r.k}')">編集</button>
+  </div>`).join(""):'<div class="small">該当するログはありません。</div>';
+}
+
+function editDate(k){selectedDate=new Date(k+"T00:00:00");renderSelected();window.scrollTo({top:document.body.scrollHeight/3,behavior:"smooth"})}
+window.editDate=editDate;
+function escapeHtml(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+$("markAll").onclick=()=>{const d=taskStateFor(keyOf(selectedDate));d.checks=[true,true,true];save();renderAll(false)};
+$("clearDay").onclick=()=>{if(!confirm("この日のチェックとログを解除しますか？"))return;delete state.days[keyOf(selectedDate)];save();renderAll(false)};
+$("searchLog").oninput=renderLogs;
+$("filterStatus").onchange=renderLogs;
+$("syncBtn").onclick=async()=>{
+  $("syncStatus").textContent="同期中…";
+  await pushCloudState();
+  $("syncStatus").textContent=cloudReady?"Cloud同期済み":"ローカル保存中";
+};
+$("exportBtn").onclick=()=>{
+ const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+ const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="commercial-psychology-log.json";a.click();URL.revokeObjectURL(a.href);
+};
+
+function renderAll(resetSelected=true){
+ renderTimeline();renderProgress();renderCalendar();renderSelected();renderLogs();
+ const sync = $("syncStatus");
+ if(sync) sync.textContent = cloudReady ? "Cloud同期済み" : "ローカル保存中";
+}
+renderAll();
+loadCloudState();
+</script>
+</body>
+</html>
