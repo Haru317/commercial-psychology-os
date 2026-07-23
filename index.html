@@ -422,96 +422,121 @@ img,svg,video,canvas{max-width:100%;height:auto}
   .case-grid{grid-template-columns:1fr}.cycle-map{grid-template-columns:1fr}.rubric{grid-template-columns:1fr 1fr}
   .portfolio-list{grid-template-columns:1fr}.evidence-table{display:block;overflow-x:auto}
 }
-/* PC responsive fix */
-html,
-body {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+
+
+/* v10 Guided OJT — preserve original Hello Haruno design */
+.guided-ojt{
+  padding:0!important;
+  overflow:hidden;
+  background:rgba(255,255,255,.96);
+}
+.guided-hero{
+  padding:22px;
+  background:linear-gradient(135deg,rgba(220,239,252,.72),#fff 48%,rgba(248,216,231,.58));
+  border-bottom:1px solid var(--line);
+}
+.guided-hero .kicker{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:900;color:#8d6b2e}
+.guided-hero h3{margin:6px 0 5px;font-family:Georgia,"Times New Roman",serif;font-size:24px;color:var(--navy)}
+.guided-hero p{margin:0;max-width:820px;font-size:13px;line-height:1.7;color:#5e697a}
+.guided-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(290px,.9fr);gap:0}
+.guide-main{padding:20px;border-right:1px solid var(--line)}
+.guide-side{padding:20px;background:linear-gradient(180deg,#fffdfc,#f9fbff)}
+.lesson-strip{
+  display:flex;gap:7px;overflow-x:auto;padding:11px 18px;
+  border-bottom:1px solid var(--line);background:#fff;
+  scrollbar-width:thin
+}
+.lesson-tab{
+  flex:0 0 auto;border:1px solid var(--line);border-radius:999px;
+  background:#fff;padding:8px 11px;font-size:10px;font-weight:850;color:#616b7b
+}
+.lesson-tab.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.lesson-panel{display:none}.lesson-panel.active{display:block}
+.guide-title{font-size:17px;margin:0 0 9px;color:var(--navy)}
+.guide-copy{font-size:13px;line-height:1.75;color:#566173}
+.guide-callout{
+  margin:10px 0;padding:13px 14px;border-radius:14px;
+  background:#fff9e9;border:1px solid #f0dfae
+}
+.guide-callout.blue{background:#f5faff;border-color:#d8e8f4}
+.guide-callout.pink{background:#fff6fa;border-color:#efdbe6}
+.guide-callout strong{display:block;font-size:11px;color:var(--navy);margin-bottom:4px}
+.guide-callout span{font-size:12px;line-height:1.65;color:#596475}
+.micro-homework{display:grid;gap:10px;margin-top:12px}
+.micro-step{
+  border:1px solid var(--line);border-radius:16px;background:#fff;overflow:hidden
+}
+.micro-head{
+  display:flex;align-items:flex-start;gap:10px;padding:12px 13px;background:#fbfcfe
+}
+.micro-number{
+  width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--pink),var(--champagne));
+  color:var(--navy);font-size:11px;font-weight:900;flex:0 0 auto
+}
+.micro-head h5{margin:0 0 3px;font-size:13px;color:var(--navy)}
+.micro-head p{margin:0;font-size:11px;line-height:1.55;color:#687284}
+.micro-body{padding:12px 13px}
+.micro-body textarea{
+  width:100%;min-height:78px;border:1px solid var(--line);border-radius:11px;
+  padding:10px;background:#fff;font-size:14px;line-height:1.55;resize:vertical
+}
+.mini-example{
+  margin-top:8px;padding:10px;border-radius:11px;background:#f7f9fc;
+  font-size:11px;line-height:1.6;color:#5b6677
+}
+.mini-example strong{color:var(--navy)}
+.answer-card{
+  border:1px solid #eadcab;border-radius:17px;background:linear-gradient(160deg,#fffef9,#fff9e7);
+  padding:15px;margin-bottom:12px
+}
+.answer-card h4{margin:0 0 5px;font-size:15px;color:var(--navy)}
+.answer-card .answer-purpose{font-size:10px;color:#8b6b2c;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.answer-section{padding:10px 0;border-top:1px solid rgba(213,174,79,.24)}
+.answer-section:first-of-type{border-top:0}
+.answer-section b{display:block;font-size:11px;color:var(--navy);margin-bottom:3px}
+.answer-section p{margin:0;font-size:11px;line-height:1.65;color:#586374}
+.bad-good{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+.bad-good>div{padding:10px;border-radius:11px;border:1px solid var(--line)}
+.bad-good .bad{background:#fff8f7}.bad-good .good{background:#f6fbff}
+.bad-good strong{font-size:10px}.bad-good p{font-size:10px;line-height:1.55;margin:4px 0 0}
+.checkpoint{
+  display:flex;gap:8px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line)
+}
+.checkpoint:first-child{border-top:0}
+.checkpoint input{width:17px;height:17px;flex:0 0 auto}
+.checkpoint span{font-size:11px;line-height:1.5;color:#596475}
+.coach-feedback{
+  margin-top:10px;padding:11px;border-radius:12px;background:#fff6fa;
+  border-left:3px solid #c886a7;font-size:11px;line-height:1.65;color:#596475
+}
+.coach-feedback strong{color:var(--navy)}
+.guide-nav{display:flex;justify-content:space-between;gap:8px;margin-top:14px}
+.guide-nav button{border:0;border-radius:11px;padding:9px 12px;font-size:11px;font-weight:850}
+.guide-nav .prev{background:#f4f5f8;color:var(--navy)}
+.guide-nav .next{background:var(--navy);color:#fff}
+.inline-answer-toggle{
+  border:1px solid #ead69a;background:#fff8d9;color:#745b1e;
+  border-radius:10px;padding:8px 10px;font-size:10px;font-weight:900;margin-top:8px
+}
+.inline-answer{display:none;margin-top:8px;padding:10px;border-radius:11px;background:#fffaf0;border:1px solid #eadcab}
+.inline-answer.open{display:block}
+@media(max-width:1050px){
+  .guided-layout{grid-template-columns:1fr}
+  .guide-main{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media(max-width:760px){
+  .guided-hero{padding:16px}
+  .guided-hero h3{font-size:21px}
+  .guided-layout{display:block}
+  .guide-main,.guide-side{padding:14px}
+  .lesson-strip{padding:9px 10px}
+  .lesson-tab{font-size:9px;padding:7px 9px}
+  .bad-good{grid-template-columns:1fr}
+  .micro-head{padding:10px}
+  .micro-body{padding:10px}
 }
 
-.shell {
-  width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 18px;
-}
-
-.dashboard {
-  display: grid;
-  grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.55fr);
-  gap: 16px;
-  width: 100%;
-}
-
-.left,
-.right,
-.card,
-.hero-main,
-.hero-side,
-.mission-box,
-.why-card {
-  min-width: 0;
-}
-
-.metrics {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.metric {
-  min-width: 0;
-  overflow: hidden;
-}
-
-.metric strong,
-.metric .label,
-.metric .task-desc {
-  overflow-wrap: anywhere;
-}
-
-.calendar {
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-}
-
-.day {
-  min-width: 0;
-}
-
-@media (max-width: 1180px) {
-  .dashboard {
-    grid-template-columns: minmax(0, 1fr) 360px;
-  }
-
-  .metrics {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 980px) {
-  .dashboard {
-    grid-template-columns: 1fr;
-  }
-
-  .right {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: start;
-  }
-
-  .right > .card {
-    min-width: 0;
-  }
-}
-
-@media (max-width: 760px) {
-  .shell {
-    padding: 8px;
-  }
-
-  .right {
-    display: flex;
-  }
-}
 </style>
 </head>
 <body>
@@ -596,6 +621,36 @@ body {
           </div>
         </div>
       </section>
+
+
+<section class="card guided-ojt" id="guidedOjt">
+  <div class="guided-hero">
+    <div class="kicker">MBA-style on-the-job training</div>
+    <h3>今日の判断を、プロと同じ順番で練習する</h3>
+    <p>課題を一度に丸投げしません。まず完成例を見て、1つずつ小さく答え、各入力欄のすぐ横で模範解答と比較します。</p>
+  </div>
+  <div class="lesson-strip" id="lessonTabs">
+    <button class="lesson-tab active" data-guide-tab="learn">1. 先に理解</button>
+    <button class="lesson-tab" data-guide-tab="watch">2. 事例を見る</button>
+    <button class="lesson-tab" data-guide-tab="copy">3. 型を写す</button>
+    <button class="lesson-tab" data-guide-tab="apply">4. 自分の案件</button>
+    <button class="lesson-tab" data-guide-tab="check">5. 採点</button>
+  </div>
+  <div class="guided-layout">
+    <div class="guide-main">
+      <section class="lesson-panel active" data-guide-panel="learn" id="guideLearn"></section>
+      <section class="lesson-panel" data-guide-panel="watch" id="guideWatch"></section>
+      <section class="lesson-panel" data-guide-panel="copy" id="guideCopy"></section>
+      <section class="lesson-panel" data-guide-panel="apply" id="guideApply"></section>
+      <section class="lesson-panel" data-guide-panel="check" id="guideCheck"></section>
+      <div class="guide-nav">
+        <button class="prev" id="guidePrev">前へ</button>
+        <button class="next" id="guideNext">次へ</button>
+      </div>
+    </div>
+    <aside class="guide-side" id="guideSide"></aside>
+  </div>
+</section>
 
       <section class="card">
         <div class="section-head">
@@ -833,7 +888,7 @@ function renderCurriculum(){
  $("curriculumGrid").className="daily-plan";$("curriculumGrid").innerHTML=o
 }
 function renderMetrics(){let tc=completion(keyOf(selectedDate)),e=clamp(dayNumber(new Date()),0,30),pl=e/30,done=0;for(let i=1;i<=30;i++)done+=completion(keyOf(dateFromDay(i)));let ac=done/30,de=(ac-pl)*100;$("todayPct").textContent=`${Math.round(tc*100)}%`;$("todayBar").style.width=`${tc*100}%`;$("journeyPct").textContent=`${Math.round(ac*100)}%`;$("journeyBar").style.width=`${ac*100}%`;$("deltaValue").textContent=`${de>=0?"+":""}${de.toFixed(1)}`;$("deltaText").textContent=Math.abs(de)<1?"予定通りです":de<0?`予定より${Math.abs(de).toFixed(1)}ポイント遅れ`:`予定より${de.toFixed(1)}ポイント先行`}
-function renderCalendar(){let h=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join(""),f=dateFromDay(1);for(let i=0;i<f.getDay();i++)h+='<div class="day empty"></div>';for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),c=completion(k),cl=c===1?"done":c>0?"partial":d<new Date()?"missed":"";h+=`<div class="day ${cl} ${k===keyOf(new Date())?"today":""}" data-k="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`}$("calendar").innerHTML=h;document.querySelectorAll(".day[data-k]").forEach(e=>e.onclick=()=>{selectedDate=new Date(e.dataset.k+"T00:00:00");renderMission();renderMetrics()})}
+function renderCalendar(){let h=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join(""),f=dateFromDay(1);for(let i=0;i<f.getDay();i++)h+='<div class="day empty"></div>';for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),c=completion(k),cl=c===1?"done":c>0?"partial":d<new Date()?"missed":"";h+=`<div class="day ${cl} ${k===keyOf(new Date())?"today":""}" data-k="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`}$("calendar").innerHTML=h;document.querySelectorAll(".day[data-k]").forEach(e=>e.onclick=()=>{selectedDate=new Date(e.dataset.k+"T00:00:00");renderMission();renderMetrics();if(typeof renderGuided==="function")renderGuided()})}
 function renderGarden(){$("garden").innerHTML=Array.from({length:100},(_,i)=>`<div class="seed ${i<30&&(state.days[keyOf(dateFromDay(i+1))]?.note||"").trim()?"active":""}"></div>`).join("")}
 function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function renderLogs(){let q=$("searchLog").value.toLowerCase(),f=$("filterStatus").value,r=[];for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),x=state.days[k],c=completion(k),st=c===1?"done":c>0?"partial":"none";if(!x&&d>new Date())continue;if(f!=="all"&&f!==st)continue;if(q&&!((x?.note||"").toLowerCase().includes(q)))continue;r.push({d,k,n,x,c})}r.reverse();$("logList").innerHTML=r.length?r.map(x=>`<div class="log-row"><div class="log-date">${formatDate(x.d)} · Day ${x.n}</div><div class="log-meta">${plan(x.n).title}｜完了率 ${Math.round(x.c*100)}%</div><div class="log-text">${esc(x.x?.note||"記録なし")}</div><button class="btn soft" style="margin-top:7px;padding:6px 9px" onclick="editDate('${x.k}')">編集</button></div>`).join(""):'<div class="small-note">該当するログはありません。</div>'}
@@ -841,5 +896,144 @@ function editDate(k){selectedDate=new Date(k+"T00:00:00");renderMission();render
 $("markAll").onclick=()=>{ds(keyOf(selectedDate)).checks=[true,true,true,true,true];queueSave();renderAll()};$("clearDay").onclick=()=>{if(confirm("この日のチェックとログを解除しますか？")){delete state.days[keyOf(selectedDate)];queueSave();renderAll()}};$("searchLog").oninput=renderLogs;$("filterStatus").onchange=renderLogs;$("syncBtn").onclick=pushCloudState;$("exportBtn").onclick=()=>{let b=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="commercial-psychology-v7-log.json";a.click();URL.revokeObjectURL(a.href)};
 function renderAll(){renderSync();bindCase();renderHero();renderMission();renderJourney();renderCurriculum();renderMetrics();renderCalendar();renderGarden();renderLogs()}renderAll();loadCloudState();
 </script>
+
+<script>
+const GUIDED_DAYS = {
+1:{
+ ability:"観測事実と、自分が付けた意味を分ける",
+ plain:"今日やることは、相手の本音を当てることではありません。まず『カメラに映る事実』と『自分の解釈』を別々に書ければ合格です。",
+ caseTitle:"顧客が『高い』と言った場面",
+ caseFacts:["見積額を伝えた","顧客は約5秒黙った","顧客は『少し高いですね』と言った","その場では契約しなかった"],
+ caseLesson:"ここから確定できるのは、発言と行動だけです。資金不足、価値不足、不信、比較検討はまだ仮説です。",
+ bad:"顧客は予算がないので断った。",
+ good:"事実：顧客は『少し高い』と言い、契約しなかった。解釈候補：資金不足／価値が不明／比較対象が安い／失敗が怖い。",
+ steps:[
+  {q:"録音やカメラで確認できる事実を1つだけ書く",hint:"感情や理由を書かず、発言・行動だけ。",sample:"顧客は見積を見た後、『少し高いですね』と言った。"},
+  {q:"顧客本人が付けた意味を書く",hint:"本人が説明していなければ『不明』でよい。",sample:"本人の意味は不明。『高い』が資金不足を意味するとはまだ確認できない。"},
+  {q:"自分が最初に付けた解釈を書く",hint:"正しく見せず、最初に思ったことをそのまま。",sample:"私は『予算が足りないのだろう』と解釈した。"},
+  {q:"別の解釈を2つだけ作る",hint:"3つ以上ではなく、今日は2つで十分。",sample:"①効果が価格に見合う確信がない。②他社価格と比較したい。"}
+ ],
+ model:["事実：見積提示後、顧客は5秒黙り『少し高いですね』と言った。","本人の意味：まだ聞いていないため不明。","自分の解釈：予算不足だと思った。","代替解釈：効果への不信／比較検討／決裁者確認。"],
+ coach:"『高い＝予算不足』と自動変換していないかを確認してください。今日の目的は原因特定ではなく、断定を止めることです。",
+ bridge:"明日は、最初の仮説に都合のよい証拠だけを集めていないかを調べます。"
+},
+2:{
+ ability:"自分の仮説を否定する証拠も見る",
+ plain:"今日は4セル表を完成させる必要はありません。まず『自分の仮説に当てはまらない1件』を探すところから始めます。",
+ caseTitle:"『高いと言う人は買わない』という仮説",
+ caseFacts:["Aさんは『高い』と言ったが分割で購入","Bさんは価格に触れず、配偶者反対で見送り","Cさんは『高い』と言い見送り"],
+ caseLesson:"『高い』という発言と非購入は常にセットではありません。反例が1件あるだけで、価格だけでは説明できないと分かります。",
+ bad:"高いと言った人が買わなかったので、価格が原因。",
+ good:"『高い』と言って購入した人もいる。したがって『高い』は価格拒否の確定証拠ではなく、価値・比較・資金などを含む曖昧な信号。",
+ steps:[
+  {q:"今日検証する仮説を1文で書く",hint:"例：高いと言う顧客は資金不足である。",sample:"『高い』と言う顧客は、支払資金が足りない。"},
+  {q:"その仮説を支持する事例を1件書く",hint:"まずは1件だけ。",sample:"Cさんは『高い』と言い、購入しなかった。"},
+  {q:"その仮説に合わない事例を1件書く",hint:"反例がなければ、今後何を探すか書く。",sample:"Aさんは『高い』と言ったが、効果を理解した後に分割で購入した。"},
+  {q:"今の時点で言える結論を1文にする",hint:"断定ではなく、仮説を弱める。",sample:"『高い』だけでは資金不足を確定できない。"}
+ ],
+ model:["仮説：高いと言う人は資金不足。","支持例：高いと言い見送った顧客がいる。","反例：高いと言った後、価値説明で購入した顧客もいる。","更新：価格発言は資金・価値・比較のいずれかを示す可能性がある。"],
+ coach:"最初から4セル全部を埋めなくて大丈夫です。支持例1件と反例1件を並べられれば、確証バイアスの訓練として成立します。",
+ bridge:"明日は、自分の期待が質問や態度を変えていなかったかを確認します。"
+},
+3:{
+ ability:"期待が自分の態度を変えた部分を見つける",
+ plain:"因果循環図をいきなり作りません。まず『私は何を予想し、そのせいで何をしたか』の2点だけを確認します。",
+ caseTitle:"SNS経由の問い合わせは本気度が低いと思った",
+ caseFacts:["担当者は短い定型返信を送った","質問をほとんどしなかった","顧客は返信を止めた"],
+ caseLesson:"相手の本気度が低かった可能性は残ります。ただし、自分の期待が対応を薄くし、離脱を強めた可能性もあります。",
+ bad:"私の思考が全部の結果を作った。",
+ good:"期待：SNS客は本気度が低い。自分の行動：定型返信で質問しなかった。相手の反応：関心を持たれていないと感じた可能性。外部要因：元々緊急度が低かった可能性も残る。",
+ steps:[
+  {q:"最初に相手へ持っていた期待を書く",hint:"良い悪いではなく、事前予想。",sample:"SNS経由なので、本気度は低いだろうと思った。"},
+  {q:"その期待によって変わった自分の行動を1つ書く",hint:"言葉、返信速度、質問数、表情など。",sample:"質問をせず、定型文だけを返した。"},
+  {q:"相手に起きた反応を書く",hint:"観測できた行動だけ。",sample:"相手はその後返信しなかった。"},
+  {q:"自分以外の要因を1つ残す",hint:"全部を自己責任にしない。",sample:"相手の優先順位が元々低かった可能性。"}
+ ],
+ model:["期待：本気度が低い。","自分の行動：返信が短く質問がない。","相手の反応：返信停止。","代替行動：目的を一問だけ聞く。","外部要因：元々の緊急度。"],
+ coach:"『全部自分が作った』も誤診です。自分が変えた部分と、自分には制御できない部分を分けてください。",
+ bridge:"次はDay1〜3の内容を、一つの案件について順番に並べます。"
+}
+};
+const GUIDED_DEFAULT={
+ ability:"今日の理論を、現実の一場面へ小さく移植する",
+ plain:"大きな診断書を一度に作りません。今日のテーマに必要な1〜4個の小さな判断だけを練習します。",
+ caseTitle:"今日のテーマに対応する実務場面",
+ caseFacts:["観測された発言","観測された行動","その時の状況"],
+ caseLesson:"最初に事実を置き、次に仮説を置き、最後に確認質問または小さな介入を一つ作ります。",
+ bad:"原因を一つに決めて、すぐ解決策を出す。",
+ good:"事実を整理し、代替仮説を残し、次の質問で不確実性を減らす。",
+ steps:[
+  {q:"観測事実を1つ書く",hint:"発言または行動だけ。",sample:"提案後、顧客は決定を延期した。"},
+  {q:"最初の仮説を1つ書く",hint:"『〜かもしれない』で書く。",sample:"価格への懸念かもしれない。"},
+  {q:"別の仮説を1つ書く",hint:"最初の仮説と違う理由。",sample:"社内承認が必要なのかもしれない。"},
+  {q:"二つを区別する質問を1つ作る",hint:"答えによって仮説順位が変わる質問。",sample:"進めるために残っているのは、費用面と社内確認のどちらが近いですか？"}
+ ],
+ model:["事実：決定を延期。","第一仮説：価格懸念。","代替仮説：社内承認。","識別質問：費用と社内確認のどちらが障害か。"],
+ coach:"入力欄の数を増やすより、各回答が事実・仮説・質問のどれか明確になっていることを優先してください。",
+ bridge:"次の日は、今日作った仮説を別の証拠か小さな実験で確かめます。"
+};
+let currentGuideTab="learn";
+function guideData(n){return GUIDED_DAYS[n]||GUIDED_DEFAULT}
+function escG(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function renderGuided(){
+ const n=clamp(dayNumber(selectedDate),1,30),g=guideData(n),saved=(state.evidence&&state.evidence["guided"+n])||{};
+ document.getElementById("guideLearn").innerHTML=`
+  <h4 class="guide-title">今日できるようになること</h4>
+  <div class="guide-callout blue"><strong>${escG(g.ability)}</strong><span>${escG(g.plain)}</span></div>
+  <div class="bad-good"><div class="bad"><strong>やらないこと</strong><p>${escG(g.bad)}</p></div><div class="good"><strong>今日の完成形</strong><p>${escG(g.good)}</p></div></div>`;
+ document.getElementById("guideWatch").innerHTML=`
+  <h4 class="guide-title">実務場面｜${escG(g.caseTitle)}</h4>
+  <p class="guide-copy">まず、次の事実だけを見ます。</p>
+  <ul class="guide-copy">${g.caseFacts.map(x=>`<li>${escG(x)}</li>`).join("")}</ul>
+  <div class="guide-callout pink"><strong>ここから何が分かる？</strong><span>${escG(g.caseLesson)}</span></div>`;
+ document.getElementById("guideCopy").innerHTML=`
+  <h4 class="guide-title">プロの型を、一行ずつ写す</h4>
+  <div class="micro-homework">${g.model.map((x,i)=>`<div class="micro-step"><div class="micro-head"><span class="micro-number">${i+1}</span><div><h5>${escG(x.split("：")[0]||"Step")}</h5><p>${escG(x)}</p></div></div></div>`).join("")}</div>
+  <div class="guide-callout"><strong>ここでは考えなくてよい</strong><span>まず順番を覚えます。事実→自分の解釈→代替解釈→確認、の流れだけ盗んでください。</span></div>`;
+ document.getElementById("guideApply").innerHTML=`
+  <h4 class="guide-title">自分の案件へ、1問ずつ移植する</h4>
+  <div class="micro-homework">${g.steps.map((s,i)=>`
+    <article class="micro-step">
+      <div class="micro-head"><span class="micro-number">${i+1}</span><div><h5>${escG(s.q)}</h5><p>${escG(s.hint)}</p></div></div>
+      <div class="micro-body">
+        <textarea data-guide-field="${i}" placeholder="ここには一つの答えだけ書く">${escG(saved[i]||"")}</textarea>
+        <button class="inline-answer-toggle" data-answer-toggle="${i}">この設問の模範解答を見る</button>
+        <div class="inline-answer" data-inline-answer="${i}"><div class="mini-example"><strong>模範解答</strong><br>${escG(s.sample)}</div></div>
+      </div>
+    </article>`).join("")}</div>`;
+ document.getElementById("guideCheck").innerHTML=`
+  <h4 class="guide-title">今日の自己採点</h4>
+  <div>${["事実と理由を混ぜていない","一つの設問に一つだけ答えた","断定ではなく仮説として書いた","模範解答と比べて修正した"].map((x,i)=>`<label class="checkpoint"><input type="checkbox" data-guide-score="${i}"><span>${x}</span></label>`).join("")}</div>
+  <div class="coach-feedback"><strong>合格基準：</strong>4項目中3項目。長い文章を書く必要はありません。</div>`;
+ document.getElementById("guideSide").innerHTML=`
+  <div class="answer-card"><div class="answer-purpose">Always visible model</div><h4>今日の模範解答</h4>
+  ${g.model.map(x=>`<div class="answer-section"><b>${escG(x.split("：")[0]||"回答")}</b><p>${escG(x.split("：").slice(1).join("：")||x)}</p></div>`).join("")}</div>
+  <div class="guide-callout pink"><strong>Coach</strong><span>${escG(g.coach)}</span></div>
+  <div class="guide-callout blue"><strong>明日への接続</strong><span>${escG(g.bridge)}</span></div>`;
+ document.querySelectorAll("[data-guide-field]").forEach(el=>el.oninput=()=>{
+   if(!state.evidence)state.evidence={};if(!state.evidence["guided"+n])state.evidence["guided"+n]={};
+   state.evidence["guided"+n][el.dataset.guideField]=el.value;queueSave();
+ });
+ document.querySelectorAll("[data-answer-toggle]").forEach(btn=>btn.onclick=()=>{
+   document.querySelector(`[data-inline-answer="${btn.dataset.answerToggle}"]`).classList.toggle("open");
+ });
+ activateGuideTab(currentGuideTab);
+}
+function activateGuideTab(name){
+ currentGuideTab=name;
+ document.querySelectorAll(".lesson-tab").forEach(x=>x.classList.toggle("active",x.dataset.guideTab===name));
+ document.querySelectorAll(".lesson-panel").forEach(x=>x.classList.toggle("active",x.dataset.guidePanel===name));
+}
+document.querySelectorAll(".lesson-tab").forEach(btn=>btn.onclick=()=>activateGuideTab(btn.dataset.guideTab));
+const GUIDE_ORDER=["learn","watch","copy","apply","check"];
+document.getElementById("guideNext").onclick=()=>{let i=GUIDE_ORDER.indexOf(currentGuideTab);activateGuideTab(GUIDE_ORDER[Math.min(i+1,GUIDE_ORDER.length-1)])};
+document.getElementById("guidePrev").onclick=()=>{let i=GUIDE_ORDER.indexOf(currentGuideTab);activateGuideTab(GUIDE_ORDER[Math.max(i-1,0)])};
+const oldRenderAll=renderAll;
+renderAll=function(){oldRenderAll();renderGuided()};
+const oldEditDate=editDate;
+editDate=function(k){oldEditDate(k);renderGuided()};window.editDate=editDate;
+renderGuided();
+</script>
+
 </body>
 </html>
