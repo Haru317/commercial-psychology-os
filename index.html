@@ -537,6 +537,34 @@ img,svg,video,canvas{max-width:100%;height:auto}
   .micro-body{padding:10px}
 }
 
+
+/* v11 Context-first learning narrative */
+.context-map{margin-bottom:14px;padding:0;overflow:hidden;background:rgba(255,255,255,.96)}
+.context-hero{padding:24px 26px;background:linear-gradient(135deg,rgba(220,239,252,.76),rgba(255,255,255,.96) 48%,rgba(248,216,231,.66));border-bottom:1px solid var(--line)}
+.context-kicker{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#8d6d2c;font-weight:900}
+.context-hero h3{margin:7px 0 7px;font-family:Georgia,"Times New Roman",serif;color:var(--navy);font-size:26px;line-height:1.25}
+.context-hero p{margin:0;max-width:900px;font-size:14px;line-height:1.75;color:#596579}
+.context-body{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:0}
+.context-main{padding:22px 24px;border-right:1px solid var(--line)}
+.context-side{padding:22px 24px;background:linear-gradient(180deg,#fffdfc,#f8fbff)}
+.context-block{margin-bottom:18px}.context-block:last-child{margin-bottom:0}
+.context-label{font-size:10px;text-transform:uppercase;letter-spacing:.08em;font-weight:900;color:#9a7428;margin-bottom:5px}
+.context-block h4{margin:0 0 7px;font-size:16px;color:var(--navy)}
+.context-block p{margin:0;font-size:13px;line-height:1.75;color:#596579}
+.learning-chain{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:11px}
+.chain-step{padding:12px;border:1px solid var(--line);border-radius:14px;background:#fff;min-width:0}
+.chain-step strong{display:block;font-size:11px;color:var(--navy);margin-bottom:4px}.chain-step span{font-size:10px;line-height:1.5;color:#687285}
+.context-question{padding:14px;border-radius:14px;background:#fff8e8;border:1px solid #efdfb1;font-size:13px;line-height:1.65;color:#5d6674}
+.context-question strong{display:block;color:var(--navy);font-size:11px;margin-bottom:4px}
+.progress-story{position:relative;padding-left:18px}.progress-story:before{content:"";position:absolute;left:5px;top:3px;bottom:3px;width:2px;background:linear-gradient(var(--gold),var(--pink),var(--blue))}
+.story-point{position:relative;margin:0 0 12px}.story-point:last-child{margin-bottom:0}
+.story-point:before{content:"";position:absolute;left:-18px;top:5px;width:10px;height:10px;border-radius:50%;background:#fff;border:3px solid #d8dce4}
+.story-point.done:before{background:var(--gold);border-color:var(--gold)}.story-point.current:before{background:var(--pink);border-color:#bb7aa0}
+.story-point b{display:block;font-size:11px;color:var(--navy)}.story-point span{font-size:10px;line-height:1.5;color:#687285}
+.outcome-box{padding:14px;border-radius:15px;background:#f5faff;border:1px solid #d8e8f4}.outcome-box b{display:block;font-size:11px;color:var(--navy);margin-bottom:4px}.outcome-box p{font-size:12px;line-height:1.65;margin:0;color:#596579}
+@media(max-width:1050px){.context-body{grid-template-columns:1fr}.context-main{border-right:0;border-bottom:1px solid var(--line)}}
+@media(max-width:760px){.context-hero{padding:17px}.context-hero h3{font-size:22px}.context-body{display:block}.context-main,.context-side{padding:15px}.learning-chain{grid-template-columns:1fr}}
+
 </style>
 </head>
 <body>
@@ -598,6 +626,26 @@ img,svg,video,canvas{max-width:100%;height:auto}
     <div class="cycle-step"><strong>Day A｜Concept</strong><span>理論を取得し、観察レンズを追加</span></div>
     <div class="cycle-step"><strong>Day B｜Diagnosis</strong><span>同じ案件の証拠と代替仮説を比較</span></div>
     <div class="cycle-step"><strong>Day C｜Experiment</strong><span>質問・表現・条件を変えて反応を測定</span></div>
+  </div>
+</section>
+
+
+<section class="card context-map" id="contextMap">
+  <div class="context-hero">
+    <div class="context-kicker">What you are learning, and why</div>
+    <h3 id="contextHeadline">Commercial Psychologyとは何をする学問か</h3>
+    <p id="contextIntro"></p>
+  </div>
+  <div class="context-body">
+    <div class="context-main">
+      <div class="context-block"><div class="context-label">The whole journey</div><h4>30日間で何を作るのか</h4><p id="journeyPurpose"></p><div class="learning-chain" id="learningChain"></div></div>
+      <div class="context-block"><div class="context-label">Today's place in the journey</div><h4 id="todayContextTitle"></h4><p id="todayContextText"></p></div>
+      <div class="context-block"><div class="context-label">The business question</div><div class="context-question"><strong>今日解く問い</strong><span id="businessQuestion"></span></div></div>
+    </div>
+    <aside class="context-side">
+      <div class="context-block"><div class="context-label">Where you are now</div><div class="progress-story" id="progressStory"></div></div>
+      <div class="context-block"><div class="context-label">What becomes possible</div><div class="outcome-box"><b>今日の学習後にできること</b><p id="todayOutcome"></p></div></div>
+    </aside>
   </div>
 </section>
 
@@ -888,7 +936,7 @@ function renderCurriculum(){
  $("curriculumGrid").className="daily-plan";$("curriculumGrid").innerHTML=o
 }
 function renderMetrics(){let tc=completion(keyOf(selectedDate)),e=clamp(dayNumber(new Date()),0,30),pl=e/30,done=0;for(let i=1;i<=30;i++)done+=completion(keyOf(dateFromDay(i)));let ac=done/30,de=(ac-pl)*100;$("todayPct").textContent=`${Math.round(tc*100)}%`;$("todayBar").style.width=`${tc*100}%`;$("journeyPct").textContent=`${Math.round(ac*100)}%`;$("journeyBar").style.width=`${ac*100}%`;$("deltaValue").textContent=`${de>=0?"+":""}${de.toFixed(1)}`;$("deltaText").textContent=Math.abs(de)<1?"予定通りです":de<0?`予定より${Math.abs(de).toFixed(1)}ポイント遅れ`:`予定より${de.toFixed(1)}ポイント先行`}
-function renderCalendar(){let h=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join(""),f=dateFromDay(1);for(let i=0;i<f.getDay();i++)h+='<div class="day empty"></div>';for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),c=completion(k),cl=c===1?"done":c>0?"partial":d<new Date()?"missed":"";h+=`<div class="day ${cl} ${k===keyOf(new Date())?"today":""}" data-k="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`}$("calendar").innerHTML=h;document.querySelectorAll(".day[data-k]").forEach(e=>e.onclick=()=>{selectedDate=new Date(e.dataset.k+"T00:00:00");renderMission();renderMetrics();if(typeof renderGuided==="function")renderGuided()})}
+function renderCalendar(){let h=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join(""),f=dateFromDay(1);for(let i=0;i<f.getDay();i++)h+='<div class="day empty"></div>';for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),c=completion(k),cl=c===1?"done":c>0?"partial":d<new Date()?"missed":"";h+=`<div class="day ${cl} ${k===keyOf(new Date())?"today":""}" data-k="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`}$("calendar").innerHTML=h;document.querySelectorAll(".day[data-k]").forEach(e=>e.onclick=()=>{selectedDate=new Date(e.dataset.k+"T00:00:00");renderMission();renderMetrics();if(typeof renderGuided==="function")renderGuided();if(typeof renderContext==="function")renderContext()})}
 function renderGarden(){$("garden").innerHTML=Array.from({length:100},(_,i)=>`<div class="seed ${i<30&&(state.days[keyOf(dateFromDay(i+1))]?.note||"").trim()?"active":""}"></div>`).join("")}
 function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function renderLogs(){let q=$("searchLog").value.toLowerCase(),f=$("filterStatus").value,r=[];for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),x=state.days[k],c=completion(k),st=c===1?"done":c>0?"partial":"none";if(!x&&d>new Date())continue;if(f!=="all"&&f!==st)continue;if(q&&!((x?.note||"").toLowerCase().includes(q)))continue;r.push({d,k,n,x,c})}r.reverse();$("logList").innerHTML=r.length?r.map(x=>`<div class="log-row"><div class="log-date">${formatDate(x.d)} · Day ${x.n}</div><div class="log-meta">${plan(x.n).title}｜完了率 ${Math.round(x.c*100)}%</div><div class="log-text">${esc(x.x?.note||"記録なし")}</div><button class="btn soft" style="margin-top:7px;padding:6px 9px" onclick="editDate('${x.k}')">編集</button></div>`).join(""):'<div class="small-note">該当するログはありません。</div>'}
@@ -1033,6 +1081,33 @@ renderAll=function(){oldRenderAll();renderGuided()};
 const oldEditDate=editDate;
 editDate=function(k){oldEditDate(k);renderGuided()};window.editDate=editDate;
 renderGuided();
+</script>
+
+
+<script>
+const CONTEXT_STAGES=[
+ {name:"Stage 1｜観察の誤診を止める",range:[1,4],desc:"事実・解釈・期待を分け、最初から間違った問題を解かない。"},
+ {name:"Stage 2｜証拠から仮説を組み立てる",range:[5,9],desc:"性格決めつけを避け、証拠、反証、識別質問で原因を絞る。"},
+ {name:"Stage 3｜意思決定の摩擦を設計する",range:[10,15],desc:"損失、参照価格、選択負荷、摩擦を変え、行動率を測る。"},
+ {name:"Stage 4｜反論・信頼・リスクを診断する",range:[16,21],desc:"『高い』『考えます』の背後にある真因を分類する。"},
+ {name:"Stage 5｜価値と価格を検証する",range:[22,27],desc:"顧客状況別の価値提案、価格、オファーを実験する。"},
+ {name:"Stage 6｜診断を商品化する",range:[28,30],desc:"再現可能なAuditと有料提案へ変える。"}
+];
+const DAY_CONTEXT={
+1:{headline:"Commercial Psychologyは、顧客の言葉をそのまま信じる学問ではない",intro:"この30日間で学ぶのは、人がなぜ買うかを暗記することではありません。顧客の発言・行動・状況から、意思決定を止めている本当の要因を診断し、質問・提案・価格・導線を変えて結果を測る方法です。",purpose:"最終的には、実在する一つの顧客案件について、事実を集め、複数の仮説を比較し、小さな介入を実施し、その結果をCommercial Psychology Auditとして提出できる状態を作ります。",todayTitle:"Day 1は、診断の前提となる『事実と解釈の分離』",todayText:"最初にここを学ぶ理由は、顧客が『高い』と言った瞬間に価格問題だと決めつけると、その後の質問、提案、値引きがすべて間違うからです。今日の課題は原因を当てることではなく、何が確定していて、何がまだ推測なのかを分けることです。",question:"顧客が『高い』と言ったとき、実際に確認できる事実と、こちらが勝手に付けた意味は何か。",outcome:"顧客の発言を見た瞬間に結論へ飛ばず、観測事実・本人の意味・自分の解釈を別々に置ける。"},
+2:{headline:"診断者は、自分が信じたい説明だけを集めやすい",intro:"Commercial Psychologyでは、最初の仮説を当てることより、間違った仮説を早く捨てることが重要です。Day2では、自分に都合のよい証拠だけを集めるConfirmation Biasを、実際の顧客案件で止めます。",purpose:"30日後には、顧客の反論を一つの理由に固定せず、支持証拠と反証を比較し、次に何を聞けば原因を区別できるかを設計できるようになります。",todayTitle:"Day 2は、『価格が原因』という仮説を反例で検査する",todayText:"『高いと言って買わなかった』一件だけでは価格が原因とは言えません。高いと言って買った人、価格に触れず買わなかった人を見れば、価格以外の要因が見えてきます。",question:"『高いと言う人は買わない』という仮説に合わない事例はあるか。",outcome:"自分の仮説を支持する例だけでなく、反例を一つ探し、仮説を弱めたり更新したりできる。"},
+3:{headline:"診断者の期待そのものが、顧客の反応を変える",intro:"顧客を『本気度が低い』『難しい』と思うと、質問数、説明量、返信の温度が変わります。その結果、相手が離脱し、最初の期待が正しかったように見えることがあります。",purpose:"30日後には、顧客側の要因だけでなく、自分の対応、会社の仕組み、導線が結果に与えた影響も分けて診断できるようになります。",todayTitle:"Day 3は、期待→自分の行動→相手の反応の循環を見る",todayText:"今日は全責任を自分へ戻す課題ではありません。自分が変えた部分と、相手や環境に残る要因を分けることで、介入可能な場所を特定します。",question:"私は相手をどう予想し、その予想によって自分の対応をどう変えたか。",outcome:"結果を顧客の性格だけで説明せず、自分・相手・環境へ分けて考えられる。"}
+};
+const DEFAULT_CONTEXT={headline:"今日の理論を、Commercial Psychologyの診断工程へ接続する",intro:"このサイトは講義一覧ではありません。毎日の理論は、同じ実在案件について観察→仮説→反証→介入→測定を進めるための一工程です。",purpose:"30日後に残すのは知識メモではなく、顧客意思決定診断書、面談記録、反論分類、価値・価格仮説、介入結果、再現可能な診断手順です。",todayTitle:"今日のテーマは、現在の案件で次に進める診断工程",todayText:"今日の理論を理解した後、同じCore Caseへ一つだけ適用し、前日までの仮説を更新します。",question:"今日の概念を使うと、顧客の意思決定について何を新しく区別できるか。",outcome:"今日の理論を説明するだけでなく、実在案件の証拠・仮説・質問・介入のどれかを更新できる。"};
+function renderContext(){
+ const n=clamp(dayNumber(selectedDate),1,30),c=DAY_CONTEXT[n]||DEFAULT_CONTEXT;
+ document.getElementById('contextHeadline').textContent=c.headline;document.getElementById('contextIntro').textContent=c.intro;document.getElementById('journeyPurpose').textContent=c.purpose;document.getElementById('todayContextTitle').textContent=c.todayTitle;document.getElementById('todayContextText').textContent=c.todayText;document.getElementById('businessQuestion').textContent=c.question;document.getElementById('todayOutcome').textContent=c.outcome;
+ document.getElementById('learningChain').innerHTML=[["Observe","何が実際に起きたか"],["Diagnose","複数の原因仮説を比較"],["Intervene","質問・提案・導線を一つ変更"],["Measure","結果を見て理論を更新"]].map(x=>`<div class="chain-step"><strong>${x[0]}</strong><span>${x[1]}</span></div>`).join('');
+ document.getElementById('progressStory').innerHTML=CONTEXT_STAGES.map(s=>{let cls=n>s.range[1]?'done':n>=s.range[0]&&n<=s.range[1]?'current':'';return `<div class="story-point ${cls}"><b>${s.name}</b><span>${s.desc}</span></div>`}).join('');
+}
+const _renderAllCtx=renderAll;renderAll=function(){_renderAllCtx();renderContext()};
+const _editDateCtx=editDate;editDate=function(k){_editDateCtx(k);renderContext()};window.editDate=editDate;
+renderContext();
 </script>
 
 </body>
