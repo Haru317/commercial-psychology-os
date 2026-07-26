@@ -849,8 +849,8 @@ function getLessonUrl(p){
    return `https://www.coursera.org/learn/wharton-marketing/home/week/${module}`;
  }
  if(p.course==="selling"){
-   const map={"Discovery":2,"Trust-led sales":3,"Objection handling":4,"Application":4,"Synthesis":4};
-   return `https://www.coursera.org/learn/consultative-selling-foundations-for-complex-deals/home/week/${map[p.module]||1}`;
+   const module=(String(p.module).match(/Module\s*(\d+)/i)||[])[1]||1;
+   return `https://www.coursera.org/learn/consultative-selling-foundations-for-complex-deals/home/week/${module}`;
  }
  if(p.course==="viral") return `https://www.coursera.org/learn/wharton-contagious-viral-marketing/home/week/1`;
  return src.url;
@@ -879,9 +879,9 @@ const D=[
 
 [5,2,"Attribution：性格と状況","social","Week 2","Attribution Theory","Concept","Person／Situation／Systemへ再分類","原因マップ","各層に2要因以上"],
 [6,2,"証拠と推測を分ける","psychjp","応用","顧客発言の証拠化","Diagnosis","逐語発言、観察事実、解釈、未確認仮説を別欄へ","Evidence Log v1","推測を事実欄へ混入させない"],
-[7,2,"仮説を区別する質問","selling","Discovery","Questioning and Active Listening","Experiment","競合する2仮説を区別できる質問を3つ作り1人に試す","Discriminating Questions","回答により仮説順位を更新"],
+[7,2,"仮説を区別する質問","selling","Module 2｜Prospecting, ICP & Discovery Mastery","What is Discovery and why is it important? - Part 1／Part 2／Best Practices during Discovery stage","Experiment","競合する2仮説を区別できる質問を3つ作り1人に試す","Discriminating Questions","回答により仮説順位を更新"],
 [8,2,"Jobs to Be Done Lens","psychjp","応用","状況・進歩・代替・不安","Concept","顧客が片付けたいJob、進歩、現在の代替、切替不安を記述","JTBD Snapshot","機能要望ではなく進歩で表現"],
-[9,2,"Interview Round 1","selling","Application","15〜20分顧客インタビュー","Experiment","助言せず、過去行動と具体状況を聞く","Interview Record 1","引用5件、仮説更新3件"],
+[9,2,"Interview Round 1","selling","Module 2｜Prospecting, ICP & Discovery Mastery","Best Practices during Discovery stage","Experiment","助言せず、過去行動と具体状況を聞く","Interview Record 1","引用5件、仮説更新3件"],
 
 [10,3,"Loss Aversion","social","Application","損失回避の商業適用","Concept","購入する損失／購入しない損失を分離","Loss Map","双方を誇張せず具体化"],
 [11,3,"Reference Point & Anchoring","price","本編","参照点・アンカー・価格比較","Diagnosis","顧客が比較している基準価格、代替費用、時間費用を特定","Reference Point Sheet","最低3参照点"],
@@ -890,12 +890,12 @@ const D=[
 [14,3,"Friction Audit","psychjp","Journey","手間・不確実性・待ち時間・権限","Diagnosis","認知から購入までの各摩擦を時系列化","Friction Audit","最低10摩擦"],
 [15,3,"Friction Reduction Test","marketing","Application","1つの摩擦だけを除去","Experiment","フォーム、説明、予約、CTA等を一箇所変更し反応を見る","Micro Experiment 2","変更前後を同条件で比較"],
 
-[16,4,"Trust Formation","selling","Trust-led sales","能力・善意・一貫性・証拠","Concept","信頼不足を能力、善意、透明性、実績、予測可能性へ分類","Trust Matrix","不足領域を2つ特定"],
-[17,4,"Risk Perception Interview","selling","Discovery","リスク・不安・失敗想像","Diagnosis","何が起きるのが怖いか、誰に説明が必要か、失敗時の損失を聞く","Interview Record 2","具体的恐怖を引用3件"],
-[18,4,"Objection Taxonomy","selling","Objection handling","反論の真因分類","Concept","資金、価値、信頼、権限、緊急性、比較、継続不安、自己像へ分類","Objection Table v1","過去反論10件"],
-[19,4,"Objection Discrimination","selling","Application","反論を区別する質問","Experiment","各反論分類に検証質問を1つ作り実会話で試す","Question Bank v1","質問後に分類変更を記録"],
+[16,4,"Trust Formation","selling","Module 1｜Introduction to Sales & Buyer Psychology","Decoding Trust／Decoding Trust II","Concept","信頼不足を能力、善意、透明性、実績、予測可能性へ分類","Trust Matrix","不足領域を2つ特定"],
+[17,4,"Risk Perception Interview","selling","Module 2｜Prospecting, ICP & Discovery Mastery","What is Discovery and why is it important? - Part 1／Part 2／Best Practices during Discovery stage","Diagnosis","何が起きるのが怖いか、誰に説明が必要か、失敗時の損失を聞く","Interview Record 2","具体的恐怖を引用3件"],
+[18,4,"Objection Taxonomy","selling","Module 4｜Objections, Closing & Handling Price","Why Customers Say “No” - Part 1／Why Customers Say “No” - Part 2","Concept","資金、価値、信頼、権限、緊急性、比較、継続不安、自己像へ分類","Objection Table v1","過去反論10件"],
+[19,4,"Objection Discrimination","selling","Module 4｜Objections, Closing & Handling Price","The “Feel–Felt–Found” Method／De-escalating Tension","Experiment","各反論分類に検証質問を1つ作り実会話で試す","Question Bank v1","質問後に分類変更を記録"],
 [20,4,"Post-Purchase Rationalization","social","Week 2","Cognitive Dissonance","Diagnosis","購入後・離脱後の自己正当化を分析","Rationalization Map","選択前後の理由を比較"],
-[21,4,"Interview Round 3 + Synthesis","selling","Application","診断面談","Experiment","反論・信頼・リスクを含む20分面談","Interview Record 3","真因、証拠、代替仮説、次介入を確定"],
+[21,4,"Interview Round 3 + Synthesis","selling","Module 4｜Objections, Closing & Handling Price","Why Customers Say “No” - Part 1／Part 2／De-escalating Tension","Experiment","反論・信頼・リスクを含む20分面談","Interview Record 3","真因、証拠、代替仮説、次介入を確定"],
 
 [22,5,"Segmentation by Decision Context","marketing","Module 1","Segmentation and Targeting","Concept","属性でなく状況・Job・摩擦・リスクで顧客を分ける","Decision Segments","3セグメント"],
 [23,5,"Value Proposition Evidence","marketing","Module 1","Brand Positioning","Diagnosis","価値主張ごとに証拠、反証、未検証点を整理","Value Evidence Table","主張3件を証拠付きに"],
@@ -904,8 +904,8 @@ const D=[
 [26,5,"Offer Experiment","marketing","Application","価値・価格・リスク低減を統合","Experiment","1人に提案し、理解、信頼、価格、摩擦の反応を測る","Offer Test 1","予測・反応・差分を記録"],
 [27,5,"Intervention Review","marketing","Application","介入前後の比較","Diagnosis","メッセージ、質問、価格、摩擦の変更と結果を比較","Intervention Report","効果・副作用・不確実性を記載"],
 
-[28,6,"Diagnostic Procedure v1","selling","Synthesis","再現可能な診断手順","Concept","準備→観察→質問→仮説→反証→介入→測定→更新を手順化","Commercial Psychology Audit v1","第三者が手順を追える"],
-[29,6,"Pilot Audit","selling","Application","第三者1名へ実施","Experiment","45分診断＋1枚の改善提案","Pilot Client File","相手のfeedbackと改善点"],
+[28,6,"Diagnostic Procedure v1","selling","Module 2｜Prospecting, ICP & Discovery Mastery","Prospecting, ICP & Discovery Mastery（Assignment）","Concept","準備→観察→質問→仮説→反証→介入→測定→更新を手順化","Commercial Psychology Audit v1","第三者が手順を追える"],
+[29,6,"Pilot Audit","selling","Module 4｜Objections, Closing & Handling Price","Objections, Closing & Handling Price（Assignment）","Experiment","45分診断＋1枚の改善提案","Pilot Client File","相手のfeedbackと改善点"],
 [30,6,"Paid Proposal & HCE Integration","viral","Application","商品化・提案・知的資産化","Experiment","価格、範囲、成果物を提示し有料提案。全データをHCEへ統合","Commercial Psychology Portfolio v1","診断書、面談3〜5件、反論表、価格仮説、実験結果、手順書"]
 ].map(x=>({d:x[0],stage:x[1],title:x[2],course:x[3],module:x[4],lesson:x[5],cycle:x[6],apply:x[7],asset:x[8],pass:x[9]}));
 
