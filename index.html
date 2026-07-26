@@ -565,6 +565,40 @@ img,svg,video,canvas{max-width:100%;height:auto}
 @media(max-width:1050px){.context-body{grid-template-columns:1fr}.context-main{border-right:0;border-bottom:1px solid var(--line)}}
 @media(max-width:760px){.context-hero{padding:17px}.context-hero h3{font-size:22px}.context-body{display:block}.context-main,.context-side{padding:15px}.learning-chain{grid-template-columns:1fr}}
 
+
+/* v12 unified agenda + responsive day navigation */
+#contextMap,#guidedOjt{display:none!important}
+.unified-agenda{display:grid;gap:14px}
+.day-picker-wrap{padding:14px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,#fff,#f8fbff)}
+.day-picker-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.day-picker-head strong{font-size:13px;color:var(--navy)}
+.day-picker-head span{font-size:11px;color:var(--muted)}
+.day-picker{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:6px;width:100%}
+.day-pick{min-width:0;border:1px solid var(--line);border-radius:10px;background:#fff;padding:8px 3px;font-size:10px;font-weight:850;color:#647083;text-align:center}
+.day-pick b{display:block;font-size:12px;color:var(--navy)}
+.day-pick.active{background:var(--navy);border-color:var(--navy);color:#fff;box-shadow:0 6px 16px rgba(38,52,79,.18)}
+.day-pick.active b{color:#fff}.day-pick.done{background:#eef8f1}.day-pick.partial{background:#fff8e8}
+.agenda-hero{padding:20px;border-radius:20px;background:linear-gradient(135deg,rgba(220,239,252,.78),#fff 48%,rgba(248,216,231,.62));border:1px solid var(--line)}
+.agenda-kicker{font-size:10px;letter-spacing:.11em;text-transform:uppercase;font-weight:900;color:#916e29}
+.agenda-hero h4{font-family:Georgia,"Times New Roman",serif;font-size:26px;line-height:1.3;color:var(--navy);margin:6px 0}
+.agenda-hero p{font-size:13px;line-height:1.75;color:#566274;margin:0}
+.agenda-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:12px}
+.agenda-card{padding:16px;border:1px solid var(--line);border-radius:17px;background:#fff;min-width:0}
+.agenda-card.full{grid-column:1/-1}.agenda-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:900;color:#9a7428;margin-bottom:5px}
+.agenda-card h5{font-size:15px;color:var(--navy);margin:0 0 7px}.agenda-card p{font-size:12px;line-height:1.7;color:#596579;margin:0}
+.course-box{padding:14px;border-radius:14px;background:#f7f9fc;border:1px solid #e4e8ef}
+.course-line{margin:5px 0;font-size:12px;line-height:1.55;color:#4f5a6b}.course-line b{color:var(--navy);display:inline-block;min-width:84px}
+.course-direct{display:block;margin-top:10px;padding:10px 12px;border-radius:11px;background:var(--navy);color:#fff;text-decoration:none;font-size:11px;font-weight:850;overflow-wrap:anywhere}
+.ja-support{padding:14px;border-left:4px solid #c887a8;border-radius:12px;background:#fff6fa}
+.ja-support strong{display:block;color:var(--navy);font-size:12px;margin-bottom:5px}.ja-support p{font-size:12px;line-height:1.75;color:#566274}
+.pick-points{display:grid;gap:7px;margin-top:10px}.pick-point{display:grid;grid-template-columns:24px 1fr;gap:8px;align-items:start;font-size:11px;line-height:1.55;color:#596579}
+.pick-point span:first-child{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:#eef4fa;color:var(--navy);font-weight:900}
+.output-line{padding:10px 0;border-top:1px solid var(--line)}.output-line:first-child{border-top:0}.output-line b{display:block;font-size:11px;color:var(--navy);margin-bottom:3px}.output-line span{font-size:11px;line-height:1.55;color:#606b7b}
+.unified-checks{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.unified-check{display:flex;gap:8px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:11px;line-height:1.5;color:#596579}.unified-check input{flex:0 0 auto}
+@media(max-width:900px){.day-picker{grid-template-columns:repeat(6,minmax(0,1fr))}.agenda-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.day-picker{grid-template-columns:repeat(5,minmax(0,1fr));gap:5px}.day-pick{padding:7px 2px;font-size:8px}.day-pick b{font-size:11px}.agenda-hero{padding:15px}.agenda-hero h4{font-size:21px}.agenda-grid{display:block}.agenda-card{margin-top:9px;padding:13px}.unified-checks{grid-template-columns:1fr}.course-line b{display:block;min-width:0;margin-bottom:2px}}
+@media(max-width:360px){.day-picker{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
 </style>
 </head>
 <body>
@@ -656,17 +690,9 @@ img,svg,video,canvas{max-width:100%;height:auto}
           <h3>Today's Mission</h3>
           <span id="todayDate"></span>
         </div>
-        <div class="mission-grid">
-          <div class="mission-box">
-            <h4>Today's Goal</h4>
-            <div class="mission-goal" id="missionGoal">反論の真因を見抜く</div>
-            <span class="duration">20–30分</span>
-            <div class="task-list" id="todayTasks"></div>
-          </div>
-          <div class="why-card">
-            <h4>Why today matters</h4>
-            <p id="whyText"></p>
-          </div>
+        <div id="unifiedAgenda" class="unified-agenda"></div>
+        <div style="display:none" aria-hidden="true">
+          <div id="missionGoal"></div><div id="todayTasks"></div><div id="whyText"></div>
         </div>
       </section>
 
@@ -961,7 +987,7 @@ function renderCurriculum(){
  $("curriculumGrid").className="daily-plan";$("curriculumGrid").innerHTML=o
 }
 function renderMetrics(){let tc=completion(keyOf(selectedDate)),e=clamp(dayNumber(new Date()),0,30),pl=e/30,done=0;for(let i=1;i<=30;i++)done+=completion(keyOf(dateFromDay(i)));let ac=done/30,de=(ac-pl)*100;$("todayPct").textContent=`${Math.round(tc*100)}%`;$("todayBar").style.width=`${tc*100}%`;$("journeyPct").textContent=`${Math.round(ac*100)}%`;$("journeyBar").style.width=`${ac*100}%`;$("deltaValue").textContent=`${de>=0?"+":""}${de.toFixed(1)}`;$("deltaText").textContent=Math.abs(de)<1?"予定通りです":de<0?`予定より${Math.abs(de).toFixed(1)}ポイント遅れ`:`予定より${de.toFixed(1)}ポイント先行`}
-function renderCalendar(){let h=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join(""),f=dateFromDay(1);for(let i=0;i<f.getDay();i++)h+='<div class="day empty"></div>';for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),c=completion(k),cl=c===1?"done":c>0?"partial":d<new Date()?"missed":"";h+=`<div class="day ${cl} ${k===keyOf(new Date())?"today":""}" data-k="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`}$("calendar").innerHTML=h;document.querySelectorAll(".day[data-k]").forEach(e=>e.onclick=()=>{selectedDate=new Date(e.dataset.k+"T00:00:00");renderMission();renderMetrics();if(typeof renderGuided==="function")renderGuided();if(typeof renderContext==="function")renderContext()})}
+function renderCalendar(){let h=["日","月","火","水","木","金","土"].map(x=>`<div class="cal-head">${x}</div>`).join(""),f=dateFromDay(1);for(let i=0;i<f.getDay();i++)h+='<div class="day empty"></div>';for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),c=completion(k),cl=c===1?"done":c>0?"partial":d<new Date()?"missed":"";h+=`<div class="day ${cl} ${k===keyOf(new Date())?"today":""}" data-k="${k}"><strong>${d.getMonth()+1}/${d.getDate()}</strong>Day ${n}<br>${Math.round(c*100)}%</div>`}$("calendar").innerHTML=h;document.querySelectorAll(".day[data-k]").forEach(e=>e.onclick=()=>{selectedDate=new Date(e.dataset.k+"T00:00:00");renderMission();renderMetrics();if(typeof renderGuided==="function")renderGuided();if(typeof renderContext==="function")renderContext();if(typeof renderUnifiedAgenda==="function")renderUnifiedAgenda()})}
 function renderGarden(){$("garden").innerHTML=Array.from({length:100},(_,i)=>`<div class="seed ${i<30&&(state.days[keyOf(dateFromDay(i+1))]?.note||"").trim()?"active":""}"></div>`).join("")}
 function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function renderLogs(){let q=$("searchLog").value.toLowerCase(),f=$("filterStatus").value,r=[];for(let n=1;n<=30;n++){let d=dateFromDay(n),k=keyOf(d),x=state.days[k],c=completion(k),st=c===1?"done":c>0?"partial":"none";if(!x&&d>new Date())continue;if(f!=="all"&&f!==st)continue;if(q&&!((x?.note||"").toLowerCase().includes(q)))continue;r.push({d,k,n,x,c})}r.reverse();$("logList").innerHTML=r.length?r.map(x=>`<div class="log-row"><div class="log-date">${formatDate(x.d)} · Day ${x.n}</div><div class="log-meta">${plan(x.n).title}｜完了率 ${Math.round(x.c*100)}%</div><div class="log-text">${esc(x.x?.note||"記録なし")}</div><button class="btn soft" style="margin-top:7px;padding:6px 9px" onclick="editDate('${x.k}')">編集</button></div>`).join(""):'<div class="small-note">該当するログはありません。</div>'}
@@ -1133,6 +1159,88 @@ function renderContext(){
 const _renderAllCtx=renderAll;renderAll=function(){_renderAllCtx();renderContext()};
 const _editDateCtx=editDate;editDate=function(k){_editDateCtx(k);renderContext()};window.editDate=editDate;
 renderContext();
+</script>
+
+
+<script>
+const JAPANESE_LESSON_NOTES={
+1:"人は出来事をそのまま認識せず、過去経験や期待を通して意味づけます。営業診断では、顧客の発言・観測行動・こちらの解釈を分離しないと、誤った原因へ値下げや説得を行うことになります。",
+2:"確証バイアスは、最初に信じた原因を支持する事例だけを拾う傾向です。支持例と反例を同時に置き、『価格が原因』などの仮説をデータで弱める練習をします。",
+3:"相手への期待は、質問数・説明量・態度を変え、その対応が相手の反応を生みます。自分の介入可能部分と、顧客・環境側に残る要因を分けます。",
+4:"Day1〜3の断片を一枚の診断へ統合します。観測、解釈、仮説、反証、自分の影響、次の確認質問までを順番に並べます。",
+5:"顧客の行動を性格だけで説明せず、本人要因・状況要因・制度や導線の要因へ分解します。変えられる原因を見つけるための基本分類です。",
+6:"顧客が実際に言った言葉と、こちらが推測した理由を別欄に置きます。逐語記録が残ることで、後から仮説を検証できます。",
+7:"Discoveryは商品説明の前に、顧客の状況・問題・影響・意思決定条件を明らかにする工程です。良い質問は会話を盛り上げる質問ではなく、競合する原因仮説の順位を変えられる質問です。",
+8:"顧客は商品を買うのではなく、ある状況から望む状態へ進むために商品を雇います。機能要望ではなく、達成したい進歩・現在の代替・切替不安を捉えます。",
+9:"初回インタビューでは助言や誘導を避け、過去の具体的行動を聞きます。意見より実際の選択履歴の方が、次の購買行動を予測しやすいためです。",
+10:"人は同額の利得より損失を強く感じます。ただし恐怖訴求を作るのではなく、購入する場合と購入しない場合の現実的損失を双方整理します。",
+11:"高い・安いは絶対額ではなく、顧客が頭の中で比較している参照点で決まります。競合価格、現状維持費、時間費用、失敗費用を特定します。",
+12:"同じ価値でも利得表現と損失回避表現で反応が変わります。二案を作り、どちらが効くかを予想してから小さく検証します。",
+13:"選択肢が多すぎると比較負荷が増え、決定が止まります。選択肢数、推奨案、デフォルトを設計し、顧客が選ぶための認知負担を減らします。",
+14:"購入を止める原因は価値不足だけではありません。入力、待ち時間、不確実性、社内承認、比較の難しさなど、行動経路にある摩擦を時系列で可視化します。",
+15:"複数箇所を同時に直すと何が効いたか分かりません。摩擦を一つだけ除去し、変更前後の反応差を測ります。",
+16:"信頼は好感だけではなく、能力、善意、透明性、一貫性、証拠、予測可能性から構成されます。どの信頼要素が不足しているかを診断します。",
+17:"顧客の不安を『心配性』で終わらせず、失敗した場合に何が起き、誰への説明が必要で、何を失うのかまで具体化します。",
+18:"『高い』『考えます』は原因名ではなく表面発言です。資金、価値、信頼、権限、緊急性、比較、継続不安、自己像へ分類します。",
+19:"反論へ即答せず、どの分類が正しいかを質問で確認します。答えによって対応が変わる質問だけを残します。",
+20:"購入後や見送り後、人は自分の選択を正当化します。選択前の懸念と選択後の説明を比較し、実際の意思決定要因を推定します。",
+21:"3回目の面談では、反論・信頼・リスクの証拠を統合し、最も可能性の高い真因と次の介入を確定します。",
+22:"年齢や所得だけでなく、置かれた状況、達成したいJob、摩擦、知覚リスクで顧客を分けます。同じ属性でも意思決定が異なる理由を説明できます。",
+23:"価値提案を魅力的な言葉で終わらせず、各主張を支える証拠、反証、未検証点を並べます。約束できる価値と仮説段階の価値を分離します。",
+24:"支払意思は『いくらなら買うか』だけでは測れません。比較対象、諦めるもの、回収期間、予算権限を聞き、価格判断の構造を捉えます。",
+25:"三段階価格は単なる機能差ではなく、異なる顧客状況と成果価値に対応させます。誰に何が不要かまで明確にします。",
+26:"価値、価格、リスク低減、摩擦除去を一つのオファーへ統合し、実際の一人へ提示します。理解・信頼・価格反応を分けて記録します。",
+27:"介入前後を比較し、効いた点、副作用、まだ不明な点を整理します。成功談ではなく、次に再現できる条件を残します。",
+28:"30日間の診断工程を、第三者が再現できる手順へ変換します。準備、観察、質問、仮説、反証、介入、測定、更新の順番を固定します。",
+29:"第三者一名へ45分のPilot Auditを実施し、診断の分かりやすさと改善提案の実用性を本人のフィードバックで検証します。",
+30:"診断範囲、成果物、価格、実施条件を明記して有料提案へ変えます。同時に、面談・反論・実験データを再利用可能な知的資産へ統合します。"
+};
+const WHY_NOW={
+1:"最初に観察精度を整えないと、以後の仮説・質問・提案がすべて誤診の上に積み上がるため。",
+2:"事実と解釈を分けた次に、自分の仮説へ都合のよい証拠だけを選ぶ癖を止める必要があるため。",
+3:"顧客だけでなく診断者自身も結果を変えることを理解し、介入可能な場所を増やすため。",
+4:"Stage 1の三つのレンズを統合し、次の証拠収集へ進める診断フォーマットを作るため。",
+7:"Day5〜6で原因分類と証拠分離を学んだ後なので、初めて『仮説を区別する質問』を設計できるため。"
+};
+function stageReason(n,p){
+ const custom=WHY_NOW[n]; if(custom)return custom;
+ const st=stages[p.stage-1];
+ return `Stage ${p.stage}「${st.jp}」の中で、前日までの材料を次の実務判断へ進める工程です。今日の${p.cycle}を終えると、翌日の診断または実験へ必要な証拠が揃います。`;
+}
+function lecturePoints(p){
+ const t=p.title;
+ if(p.d===7)return ["Discoveryの目的：売り込む前に、現状・望む結果・障害・意思決定条件を明らかにする","質問は広く聞くだけでなく、二つの原因仮説を区別できる形にする","顧客の回答を要約して確認し、こちらの推測を本人の言葉へ置き換える"];
+ return [`講義内で「${t}」の定義と具体例だけを拾う`,`自分のCore Caseで観測できる証拠へ置き換える`,`理解できない英語表現は暗記せず、今日の成果物「${p.asset}」へ必要な部分だけ使う`];
+}
+function renderUnifiedAgenda(){
+ const root=document.getElementById('unifiedAgenda'); if(!root)return;
+ const n=clamp(dayNumber(selectedDate),1,30),p=plan(n),src=SOURCES[p.course],g=typeof guideData==='function'?guideData(n):null,c=(typeof DAY_CONTEXT!=='undefined'&&(DAY_CONTEXT[n]||DEFAULT_CONTEXT))||null,d=ds(keyOf(selectedDate));
+ const points=lecturePoints(p);
+ const ability=c?.outcome||g?.ability||p.apply;
+ root.innerHTML=`
+ <div class="day-picker-wrap"><div class="day-picker-head"><strong>学習するDayを選択</strong><span>画面幅に合わせて自動折返し</span></div><div class="day-picker">${D.map(x=>{const co=completion(keyOf(dateFromDay(x.d)));return `<button class="day-pick ${x.d===n?'active':''} ${co===1?'done':co>0?'partial':''}" data-select-day="${x.d}"><b>${x.d}</b>Day</button>`}).join('')}</div></div>
+ <div class="agenda-hero"><div class="agenda-kicker">Day ${n} · Stage ${p.stage} · ${p.cycle}</div><h4>${escG(p.title)}</h4><p>${escG(c?.todayText||g?.plain||p.apply)}</p></div>
+ <div class="agenda-grid">
+   <section class="agenda-card"><div class="agenda-label">Why now</div><h5>なぜ、この順番で今日学ぶのか</h5><p>${escG(stageReason(n,p))}</p></section>
+   <section class="agenda-card"><div class="agenda-label">Outcome</div><h5>今日できるようになること</h5><p>${escG(ability)}</p></section>
+   <section class="agenda-card full"><div class="agenda-label">Assigned lecture</div><h5>今日見る講義—リンクが切れても目視で辿れる正式指定</h5><div class="course-box">
+     <div class="course-line"><b>講座名</b>${escG(src.name)}</div><div class="course-line"><b>提供元</b>${escG(src.provider)}</div><div class="course-line"><b>Module / Week</b>${escG(p.module)}</div><div class="course-line"><b>Lecture / Assignment</b>${escG(p.lesson)}</div>
+     <a class="course-direct" href="${getLessonUrl(p)}" target="_blank" rel="noopener">${escG(src.name)}｜${escG(p.module)}｜${escG(p.lesson)} ↗</a>
+   </div></section>
+   <section class="agenda-card full"><div class="agenda-label">Japanese follow-up</div><h5>英語講義を見なくても骨格が分かる日本語解説</h5><div class="ja-support"><strong>今日の核心</strong><p>${escG(JAPANESE_LESSON_NOTES[n]||p.apply)}</p></div><div class="pick-points">${points.map((x,i)=>`<div class="pick-point"><span>${i+1}</span><span>${escG(x)}</span></div>`).join('')}</div></section>
+   <section class="agenda-card"><div class="agenda-label">Application</div><h5>自分の案件で今日やること</h5><p>${escG(p.apply)}</p></section>
+   <section class="agenda-card"><div class="agenda-label">Deliverable</div><h5>今日残す成果物と合格条件</h5><div class="output-line"><b>成果物</b><span>${escG(p.asset)}</span></div><div class="output-line"><b>完了条件</b><span>${escG(p.pass)}</span></div></section>
+   <section class="agenda-card full"><div class="agenda-label">Completion</div><h5>今日のチェック</h5><div class="unified-checks">${[
+     `講義の指定箇所を確認：${src.name}｜${p.module}｜${p.lesson}`,'観測事実と自分の解釈を分けた','代替仮説を最低一つ残した','仮説を区別する質問または介入を作った','予測と実際の反応差を記録した'
+   ].map((x,i)=>`<label class="unified-check"><input type="checkbox" data-unified-check="${i}" ${d.checks[i]?'checked':''}><span>${escG(x)}</span></label>`).join('')}</div></section>
+ </div>`;
+ root.querySelectorAll('[data-select-day]').forEach(btn=>btn.onclick=()=>{selectedDate=dateFromDay(+btn.dataset.selectDay);renderMission();renderMetrics();renderCalendar();renderUnifiedAgenda();document.getElementById('unifiedAgenda').scrollIntoView({behavior:'smooth',block:'start'});});
+ root.querySelectorAll('[data-unified-check]').forEach(cb=>cb.onchange=()=>{d.checks[+cb.dataset.unifiedCheck]=cb.checked;queueSave();renderMetrics();renderCalendar();renderUnifiedAgenda();});
+ document.getElementById('todayDate').textContent=formatDate(selectedDate);
+}
+const __renderAllUnified=renderAll;renderAll=function(){__renderAllUnified();renderUnifiedAgenda()};
+const __editDateUnified=editDate;editDate=function(k){__editDateUnified(k);renderUnifiedAgenda()};window.editDate=editDate;
+renderUnifiedAgenda();
 </script>
 
 </body>
