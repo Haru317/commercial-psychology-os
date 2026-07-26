@@ -605,7 +605,7 @@ img,svg,video,canvas{max-width:100%;height:auto}
   
 <section class="quality-banner">
 <h3>Curated Path｜講座完走ではなく、必要な講義だけを使う</h3>
-<p>大学・専門機関・実務教育の講座からCommercial Psychologyに直結する講義だけを抽出。イントロ、運営説明、重複、目的に合わない章は最初から除外しています。</p>
+<p>大学・専門機関・実務教育の講座からCommercial Psychologyに直結する講義だけを抽出。各Dayに「講座名 → Week／Module → Lecture番号・正式タイトル」を固定し、リンクは該当Chapterへ直接移動します。</p>
 <div class="selection-grid">
 <div class="selection-rule"><strong>講師・提供元</strong><span>大学・専門機関・実績を確認</span></div>
 <div class="selection-rule"><strong>内容の精度</strong><span>理論名と実務接続が明確</span></div>
@@ -837,6 +837,31 @@ batna:{name:"交渉術とは？BATNAとRV",provider:"GLOBIS",url:"https://globis
 issues:{name:"相手の関心事を増やして交渉を広げる",provider:"GLOBIS",url:"https://globis.jp/article/2084/"}
 };
 
+
+function getLessonUrl(p){
+ const src=SOURCES[p.course];
+ if(p.course==="social"){
+   const week=(String(p.module).match(/Week\s*(\d+)/i)||[])[1]||((/Cognitive Dissonance/i.test(p.lesson))?2:1);
+   return `https://www.coursera.org/learn/social-psychology/home/week/${week}`;
+ }
+ if(p.course==="marketing"){
+   const module=(String(p.module).match(/Module\s*(\d+)/i)||[])[1]||1;
+   return `https://www.coursera.org/learn/wharton-marketing/home/week/${module}`;
+ }
+ if(p.course==="selling"){
+   const map={"Discovery":2,"Trust-led sales":3,"Objection handling":4,"Application":4,"Synthesis":4};
+   return `https://www.coursera.org/learn/consultative-selling-foundations-for-complex-deals/home/week/${map[p.module]||1}`;
+ }
+ if(p.course==="viral") return `https://www.coursera.org/learn/wharton-contagious-viral-marketing/home/week/1`;
+ return src.url;
+}
+function lessonPathText(p,src){
+ return `${src.name}｜${src.provider}<br><strong>${p.module}</strong><br>${p.lesson}`;
+}
+function lessonLinkText(p,src){
+ return `${src.name}｜${p.module}｜${p.lesson} ↗`;
+}
+
 const stages=[
 {name:"Observer Calibration",jp:"観察者の誤診を制御",start:1,end:4},
 {name:"Evidence Diagnosis",jp:"証拠・仮説・質問",start:5,end:9},
@@ -906,9 +931,9 @@ function renderHero(){let n=clamp(dayNumber(new Date()),1,30),s=stage(n),done=0;
 function renderMission(){
  let n=clamp(dayNumber(selectedDate),1,30),p=plan(n),d=ds(keyOf(selectedDate)),s=SOURCES[p.course];
  $("missionGoal").textContent=p.title;
- $("whyText").innerHTML=`<strong>${p.cycle}</strong>｜${p.apply}<br><br><strong>指定教材：</strong>${s.name} → ${p.module} → ${p.lesson}`;
+ $("whyText").innerHTML=`<strong>${p.cycle}</strong>｜${p.apply}<br><br><strong>指定教材</strong><br>${lessonPathText(p,s)}<br><a class="day-link" href="${getLessonUrl(p)}" target="_blank" rel="noopener">${lessonLinkText(p,s)}</a>`;
  let tasks=[
- `指定教材を確認：${p.lesson}`,
+ `指定教材を確認：${s.name}｜${p.module}｜${p.lesson}`,
  `証拠と推測を分けた`,
  `代替仮説を作った`,
  `仮説を区別する質問または介入を作った`,
@@ -927,11 +952,11 @@ function renderCurriculum(){
  D.filter(x=>x.stage===si+1).forEach(p=>{let src=SOURCES[p.course],co=completion(keyOf(dateFromDay(p.d)));o+=`<article class="day-card ${p.d===cur?"current":""} ${co===1?"completed":""}">
  <div class="day-top"><div><div class="day-num">Day ${p.d} · ${p.cycle}</div><h4>${p.title}</h4></div><span class="badge core">${src.provider}</span></div>
  <div class="day-badges"><span class="badge">${p.module}</span><span class="badge ${p.cycle==="Experiment"?"jp":"en"}">${p.cycle}</span></div>
- <div class="lesson-path"><strong>指定箇所</strong><br>${p.lesson}</div>
+ <div class="lesson-path"><strong>指定カリキュラム</strong><br>${src.name}<br><strong>${p.module}</strong><br>${p.lesson}</div>
  <div class="day-section"><b>同一案件への適用</b><p>${p.apply}</p></div>
  <div class="day-section"><b>累積成果物</b><p>${p.asset}</p></div>
  <div class="pass-box"><b>完了条件</b><br><span>${p.pass}</span></div>
- <a class="day-link" href="${src.url}" target="_blank">${src.name} ↗</a>
+ <a class="day-link" href="${getLessonUrl(p)}" target="_blank" rel="noopener">${lessonLinkText(p,src)}</a>
  </article>`})});
  $("curriculumGrid").className="daily-plan";$("curriculumGrid").innerHTML=o
 }
